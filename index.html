@@ -35,7 +35,7 @@
 <div class="field"><span class="field-label">Кто проходит Obby?</span><div class="tilegrid" id="avatar"></div></div>
 <div class="field"><span class="field-label">Основная палитра</span><div class="palettes" id="palette"></div></div>
 <div class="field"><span class="field-label">Набор из 3 скинов</span><div class="chips" id="skinset"></div><div class="skin-gallery" id="skinGallery" aria-label="Выбери один из трёх скинов"></div></div>
-<div class="selectnote">Герой в превью смотрит лицом к игроку, а не сбоку.</div>
+<div class="selectnote">Камера позади героя: робот смотрит на трассу и бежит вперёд.</div>
 </section>
 <section class="tab" id="tab-world" role="tabpanel" hidden>
 <div class="shead"><h2>Мир и атмосфера</h2><span class="count">02 / 04</span></div>
@@ -65,7 +65,7 @@
 <section class="panel precard">
 <div class="cardtitle"><span>Живое превью</span><span class="live">LIVE PREVIEW</span></div>
 <div class="stage"><canvas id="preview" width="900" height="506" aria-label="Объёмный Obby-мир, герой лицом к камере" role="img"></canvas><span class="stage-label" id="worldLabel">🌋 Лавовые острова</span></div>
-<p class="substage" id="previewDetails">3D-мир · персонаж анфас · объёмные платформы</p>
+<p class="substage" id="previewDetails">3D-мир · камера позади героя · объёмные платформы</p>
 </section>
 <section class="panel promptcard"><div class="cardtitle"><span>Готовый промпт</span><span class="promptmeta" id="length">0 знаков</span></div><textarea id="prompt" spellcheck="false" aria-label="Готовый промпт для копирования"></textarea><button type="button" class="copy" id="copy">📋 Скопировать промпт</button></section>
 </div>
@@ -87,9 +87,9 @@ const opts={
  difficulty:[['Комфортно'],['Средне'],['Сложно']],
  collectible:[['Монеты','🪙'],['Кристаллы','💎'],['Звёзды','⭐'],['Энерго-кубы','🔷']],
  reward:[['Кубок + портал','🏆'],['Корона + портал','👑'],['Алмазный трон','💎'],['Портал + фейерверк','🎆']],
- camera:[['3/4 спереди'],['Изометрия спереди']]
+ camera:[['Сзади 3/4'],['Сзади сверху']]
 };
-const defaults={gameTitle:'LAVA ESCAPE',avatar:'Блочный робот',palette:'Лава',skinset:'Броня',world:'Лавовые острова',sky:'Закат',decor:'Парящие скалы',ambient:true,glow:true,obstacles:['Лава','Лазеры','Движущиеся платформы'],difficulty:'Комфортно',collectCount:10,collectible:'Кристаллы',reward:'Кубок + портал',particles:true,shadows:true,sounds:false,confetti:false,camera:'3/4 спереди'};
+const defaults={gameTitle:'LAVA ESCAPE',avatar:'Блочный робот',palette:'Лава',skinset:'Броня',world:'Лавовые острова',sky:'Закат',decor:'Парящие скалы',ambient:true,glow:true,obstacles:['Лава','Лазеры','Движущиеся платформы'],difficulty:'Комфортно',collectCount:10,collectible:'Кристаллы',reward:'Кубок + портал',particles:true,shadows:true,sounds:false,confetti:false,camera:'Сзади 3/4'};
 let state={...defaults,obstacles:[...defaults.obstacles]};const tabNames=['hero','world','traps','finish'];let activeTab=0;
 const colorFor=()=>opts.palette.find(o=>o[0]===state.palette)[1];
 function buildGroup(key,type='chips'){
@@ -128,7 +128,7 @@ function makePrompt(){
  const rew={'Кубок + портал':'кубок и портал','Корона + портал':'корона и портал','Алмазный трон':'алмазный трон','Портал + фейерверк':'портал и фейерверк'};
  const sk=(skinModels[state.skinset]||skinModels['Броня']).slice(0,3);
  const m={TITLE:state.gameTitle.trim()||'LAVA ESCAPE',HERO:h[state.avatar],WORLD:w[state.world],PALETTE:opts.palette.find(v=>v[0]===state.palette)[1].join(', '),SKY:state.sky.toLowerCase(),DECOR:state.decor,DECOR_DESC:decorDetails[state.decor],DANGER:d[state.world],CAMERA:state.camera,SKINSET:state.skinset,SKINS:sk.map((v,i)=>(i+1)+'. '+v[0]+': '+v[4]).join('; '),SKIN:sk[Math.min(2,state.skinIndex||0)][0],TRAPS:state.obstacles.join(', ').toLowerCase(),DIFFICULTY:state.difficulty.toLowerCase(),COUNT:state.collectCount,ITEMS:state.collectible.toLowerCase(),ITEM_DESC:itemDetails[state.collectible],REWARD:rew[state.reward],SHADOWS:state.shadows?'Простые тени.':'Без динамических теней.',GLOW:state.glow?'Мягкое свечение портала.':'Без свечения.',AMBIENT:state.ambient?'Медленно движущийся фон.':'Статичный фон.',PARTICLES:state.particles?'Небольшой эффект при сборе.':'Без частиц.',CONFETTI:state.confetti?'Простое конфетти на победе.':'Без конфетти.',SOUNDS:state.sounds?'Короткие звуки через Web Audio API, если поместятся.':'Без звуков.'};
- const p="Ты разработчик браузерных игр. Сделай НЕБОЛЬШУЮ, но красивую и полностью рабочую мини-игру Obby в ярком блочном Roblox-подобном стиле. Не копируй конкретные карты и персонажей.\n\nКРИТИЧНО: весь HTML-код НЕ БОЛЕЕ 1000 СТРОК, лучше 400–700. Не сжимай весь код в одну строку. Если не помещается — сократи визуальные эффекты, но сохрани рабочее управление, чекпоинты и финиш.\n\nТЕМА\nНазвание «[[TITLE]]». Герой: [[HERO]]. Мир: [[WORLD]]. Цвета: [[PALETTE]]. Небо: [[SKY]]. Декорации: [[DECOR]] — [[DECOR_DESC]]. Под трассой: [[DANGER]].\n\n3D-ВИД БЕЗ 3D-ДВИЖКА\nИспользуй Canvas 2D и лёгкую 2.5D-проекцию: толстые блоки с верхними и боковыми гранями, дальние платформы меньше ближних, лёгкое следование камеры. НЕ вид сбоку, НЕ плоская боковая игра.\nАватар виден анфас или под углом 3/4 спереди: кубическая голова с лицом и двумя глазами, отдельные туловище, обе руки и ноги. Анимация ходьбы и прыжка. Камера: [[CAMERA]].\nВсего 3 разных скина из набора «[[SKINSET]]»: [[SKINS]]. Стартовый скин: «[[SKIN]]». Скины отличаются формой шлема, аксессуарами и силуэтом, а не только цветами, но используют одну физику.\n\nПРОСТАЯ ПРОХОДИМАЯ КАРТА\nОдна трасса из примерно 12 широких платформ, 3 коротких этапа, 2 чекпоинта между этапами, старт и финиш. Только выбранные ловушки: [[TRAPS]]. Сложность: [[DIFFICULTY]]. Прыжки лёгкие и проверяемые; все препятствия видны. Никаких невозможных разрывов, узких прыжков или опасностей прямо на чекпоинте.\nПадение/ловушка = быстрый респавн на последнем чекпоинте, неограниченные попытки.\nНа карте [[COUNT]] предметов: [[ITEMS]] ([[ITEM_DESC]]). При сборе исчезают, счётчик +1. Для победы собирать все предметы не нужно.\nWASD/стрелки — перемещение вперёд-назад и в стороны по платформе, Space — прыжок. Движение согласовано с камерой. Для телефона добавь простые сенсорные кнопки.\n\nМЕНЮ И ФИНАЛ\nСтарт: название, крупный герой лицом к зрителю, выбор из трёх скинов, кнопка «Играть». HUD: таймер, предметы, чекпоинт 0/2, падения.\nФиниш: «🏆 ПОБЕДА!», [[REWARD]], результат и кнопки «Ещё раз», «Меню».\n[[SHADOWS]] [[GLOW]] [[AMBIENT]] [[PARTICLES]] [[CONFETTI]] [[SOUNDS]]\n\nТЕХНИКА\nОдин HTML-документ, CSS внутри <style>, JavaScript внутри <script>. Только HTML5 Canvas, CSS, чистый JavaScript. Без WebGL, внешних библиотек, изображений, файлов или ассетов. requestAnimationFrame, простая физика, массив платформ, корректные коллизии, перезапуск, адаптация к экрану. Проверь синтаксис и проходимость.\n\nВЫВЕДИ ТОЛЬКО готовый HTML-код от <!DOCTYPE html> до </html> для вставки в HTML-панель CodePen. Никакого файла, Markdown, кавычек вокруг кода или пояснений. Строго до 1000 строк.";
+ const p="Ты разработчик браузерных игр. Сделай НЕБОЛЬШУЮ, но красивую и полностью рабочую мини-игру Obby в ярком блочном Roblox-подобном стиле. Не копируй конкретные карты и персонажей.\n\nКРИТИЧНО: весь HTML-код НЕ БОЛЕЕ 1000 СТРОК, лучше 400–700. Не сжимай весь код в одну строку. Если не помещается — сократи визуальные эффекты, но сохрани рабочее управление, чекпоинты и финиш.\n\nТЕМА\nНазвание «[[TITLE]]». Герой: [[HERO]]. Мир: [[WORLD]]. Цвета: [[PALETTE]]. Небо: [[SKY]]. Декорации: [[DECOR]] — [[DECOR_DESC]]. Под трассой: [[DANGER]].\n\n3D-ВИД БЕЗ 3D-ДВИЖКА\nИспользуй Canvas 2D и лёгкую 2.5D-проекцию: толстые блоки с верхними и боковыми гранями, дальние платформы меньше ближних, лёгкое следование камеры. НЕ вид сбоку, НЕ плоская боковая игра. Камера находится позади персонажа и чуть выше, смотрит на трассу и препятствия впереди; персонаж не заслоняет путь.\nАватар — объёмный блочный персонаж с кубической головой, корпусом, двумя руками и ногами. В игре он всегда СМОТРИТ ПО НАПРАВЛЕНИЮ ДВИЖЕНИЯ, НЕ ПОВЁРНУТ ЛИЦОМ К ЗРИТЕЛЮ: когда бежит вперёд, камера видит его спину, затылок и рюкзак; при движении в сторону модель плавно поворачивается туда. Внешность и детали шлема видны сзади/сбоку. Никаких глаз на затылке. Анимации idle, бег, прыжок и приземление. Камера: [[CAMERA]].\nВсего 3 разных скина из набора «[[SKINSET]]»: [[SKINS]]. Стартовый скин: «[[SKIN]]». Скины отличаются формой шлема, аксессуарами и силуэтом, а не только цветами, но используют одну физику.\n\nПРОСТАЯ ПРОХОДИМАЯ КАРТА\nОдна трасса из примерно 12 широких платформ, 3 коротких этапа, 2 чекпоинта между этапами, старт и финиш. Только выбранные ловушки: [[TRAPS]]. Сложность: [[DIFFICULTY]]. Прыжки лёгкие и проверяемые; все препятствия видны. Никаких невозможных разрывов, узких прыжков или опасностей прямо на чекпоинте.\nПадение/ловушка = быстрый респавн на последнем чекпоинте, неограниченные попытки.\nНа карте [[COUNT]] предметов: [[ITEMS]] ([[ITEM_DESC]]). При сборе исчезают, счётчик +1. Для победы собирать все предметы не нужно.\nWASD/стрелки — перемещение вперёд-назад и в стороны по платформе, Space — прыжок. Движение согласовано с камерой. Для телефона добавь простые сенсорные кнопки.\n\nМЕНЮ И ФИНАЛ\nСтарт: название, крупный герой в естественной позе 3/4 сзади, выбор из трёх скинов, кнопка «Играть». HUD: таймер, предметы, чекпоинт 0/2, падения.\nФиниш: «🏆 ПОБЕДА!», [[REWARD]], результат и кнопки «Ещё раз», «Меню».\n[[SHADOWS]] [[GLOW]] [[AMBIENT]] [[PARTICLES]] [[CONFETTI]] [[SOUNDS]]\n\nТЕХНИКА\nОдин HTML-документ, CSS внутри <style>, JavaScript внутри <script>. Только HTML5 Canvas, CSS, чистый JavaScript. Без WebGL, внешних библиотек, изображений, файлов или ассетов. requestAnimationFrame, простая физика, массив платформ, корректные коллизии, перезапуск, адаптация к экрану. Проверь синтаксис и проходимость.\n\nВЫВЕДИ ТОЛЬКО готовый HTML-код от <!DOCTYPE html> до </html> для вставки в HTML-панель CodePen. Никакого файла, Markdown, кавычек вокруг кода или пояснений. Строго до 1000 строк.";
  return p.replace(/\[\[([A-Z_]+)\]\]/g,(_,k)=>String(m[k]??''));
 }
 function refresh(updateButtons=true){
@@ -270,23 +270,26 @@ function drawSkinCards(){
 }
 function drawMiniSkin(cv,sk,i){
  const m=cv.getContext('2d'),[name,base,dark,style]=sk;
- m.clearRect(0,0,cv.width,cv.height);const gr=m.createLinearGradient(0,0,0,115);gr.addColorStop(0,'#20334a');gr.addColorStop(1,'#0d1b2b');m.fillStyle=gr;m.fillRect(0,0,132,115);
- function r(x,y,w,h,col){m.fillStyle=col;m.fillRect(x,y,w,h)}
- function b(x,y,w,h,col){r(x+5,y-4,w,h,dark);r(x,y,w,h,col);r(x,y,w,4,'#ffffff27')}
- r(42,98,48,5,'#00000062');
- if(style==='wings'){r(20,47,21,38,dark);r(92,47,21,38,dark);r(25,36,16,24,base);r(92,36,16,24,base)}
- if(style==='halo'){m.strokeStyle='#b1fbff';m.lineWidth=5;m.beginPath();m.ellipse(66,13,34,7,0,0,7);m.stroke()}
- if(style==='hood'){r(35,18,62,46,dark);r(42,23,48,26,'#132137')}
- b(45,79,17,27,base);b(70,79,17,27,base);b(26,55,16,39,base);b(90,55,16,39,base);b(43,51,46,43,base);
- if(style==='shoulders'){b(18,49,28,18,dark);b(86,49,28,18,dark)}
- b(42,22,48,36,style==='hood'?'#24394d':'#d9c0ae');
- r(48,39,12,7,'#172a46');r(73,39,12,7,'#172a46');r(51,40,3,2,'#e3ffff');r(76,40,3,2,'#e3ffff');
- if(style==='visor'){r(43,34,48,16,'#1f5375');r(49,36,31,5,'#82f1ff');r(39,20,54,9,base)}
- if(style==='shoulders')r(50,64,32,9,dark);
- if(style==='crown'){for(let n=0;n<3;n++)b(41+n*18,10+(n%2?4:0),15,17,'#f6c760')}
- if(style==='horns'){b(37,9,13,21,dark);b(82,9,13,21,dark)}
- if(style==='antenna'){r(46,5,4,21,'#9aeeff');r(82,5,4,21,'#9aeeff');r(43,3,10,7,'#ed8fff');r(79,3,10,7,'#ed8fff')}
- r(57,66,18,8,style==='halo'?'#d29eff':'#a0ecff');
+ const bg=m.createLinearGradient(0,0,0,115);bg.addColorStop(0,'#233b55');bg.addColorStop(1,'#0e1a2d');
+ m.fillStyle=bg;m.fillRect(0,0,132,115);
+ const r=(x,y,w,h,c)=>{m.fillStyle=c;m.fillRect(x,y,w,h)};
+ const block=(x,y,w,h,c)=>{r(x+4,y-4,w,h,dark);r(x,y,w,h,c);r(x,y,w,3,'#ffffff26')};
+ r(37,102,58,5,'#00000068');
+ if(style==='wings'){block(18,48,23,40,dark);block(90,48,23,40,dark)}
+ if(style==='halo'){m.strokeStyle='#a2f3ff';m.lineWidth=4;m.beginPath();m.ellipse(66,13,33,8,0,0,Math.PI*2);m.stroke()}
+ block(45,79,17,27,base);block(70,79,17,27,base);
+ block(26,52,16,41,base);block(90,52,16,41,base);
+ block(43,49,46,44,base);
+ if(style==='shoulders'){block(20,50,27,17,dark);block(85,50,27,17,dark)}
+ // Прямоугольный ранец на спине, а не лицевая панель груди.
+ block(51,60,29,24,dark);r(57,66,17,9,'#a1f3ff');
+ block(42,21,48,37,base);
+ r(48,37,36,9,dark);r(54,39,24,3,'#87e9ff');
+ if(style==='visor'){r(44,31,44,8,'#286f93');r(50,33,32,3,'#b4f8ff')}
+ if(style==='hood'){block(38,16,56,13,dark);block(39,24,10,33,dark);block(84,24,9,33,dark)}
+ if(style==='crown')for(let n=0;n<3;n++)block(41+n*18,8+(n%2?4:0),15,18,'#fbd56c');
+ if(style==='horns'){block(36,8,12,21,dark);block(84,8,12,21,dark)}
+ if(style==='antenna'){r(46,5,4,21,'#b8f5ff');r(82,5,4,21,'#b8f5ff');r(43,3,10,7,'#fb9ddd');r(79,3,10,7,'#fb9ddd')}
 }
 // Строгая перспектива: ближние платформы крупнее, дальние сходятся к точке вдали.
 function slabV3(cx,backY,frontY,backW,frontW,thick,top){
@@ -353,52 +356,73 @@ function collectibleV3(type,x,y,s,i){
  if(state.particles){for(let n=0;n<3;n++){const a=t*1.8+n*2.1+i,xx=x+Math.cos(a)*22*s,yy=y+bob+Math.sin(a)*15*s;rect(xx,yy,2.6*s,2.6*s,n%2?'#faffff':'#ffec95')}}
 }
 function avatarV3(){
- const sk=selectedSkin(),[name,base,dark,kind]=sk;
- const cx=450,ground=433,walk=state.ambient?Math.sin(t*4)*3:0;
- g.save();g.translate(cx,ground+walk);
- if(state.shadows){g.fillStyle='#10172885';g.beginPath();g.ellipse(4,15,74,20,0,0,7);g.fill()}
+ // Камера находится сзади. Робот бежит К трассе: видны спина, рюкзак,
+ // затылочная часть шлема и две руки, а не глаза, обращённые к зрителю.
+ const [name,base,dark,kind]=selectedSkin();
+ const cx=450,ground=435;
+ const bob=state.ambient?Math.abs(Math.sin(t*3.7))*3:0;
+ const step=state.ambient?Math.sin(t*3.7)*7:0;
+ g.save();g.translate(cx,ground+bob);
+ if(state.camera==='Сзади сверху'){g.translate(0,6);g.scale(.89,.89)}
+ // Естественное покачивание корпуса при беге, без поворота лицом к камере.
+ g.rotate(state.ambient?Math.sin(t*1.85)*.014:0);
+ if(state.shadows){g.fillStyle='#0811247a';g.beginPath();g.ellipse(2,13,76,18,0,0,Math.PI*2);g.fill()}
  if(kind==='wings'){
-  cubeV3(-95,-153,31,92,dark,11);cubeV3(65,-153,31,92,dark,11);
-  cubeV3(-113,-170,28,37,base,8);cubeV3(85,-170,28,37,base,8);
+  cubeV3(-103,-159,37,90,dark,12);cubeV3(66,-159,37,90,dark,12);
+  cubeV3(-119,-170,30,46,base,9);cubeV3(89,-170,30,46,base,9);
  }
  if(kind==='halo'){
-  g.strokeStyle='#c1faff';g.lineWidth=7;g.shadowColor='#9ef8ff';g.shadowBlur=15;g.beginPath();g.ellipse(0,-242,55,14,0,0,7);g.stroke();g.shadowBlur=0;
+  g.save();g.shadowColor='#a2f4ff';g.shadowBlur=15;g.strokeStyle='#c9f9ff';g.lineWidth=7;
+  g.beginPath();g.ellipse(0,-247,56,13,0,0,Math.PI*2);g.stroke();g.restore();
  }
- if(kind==='hood'){cubeV3(-51,-222,104,108,dark,13)}
- if(kind==='crown'){cubeV3(-53,-114,20,115,dark,6);cubeV3(36,-114,18,114,dark,6)}
- // Ноги с отдельными ступнями и руками, видимые боковые грани.
- const stride=state.ambient?Math.sin(t*3)*5:0;
- cubeV3(-44,-48+stride,36,62,shade(base,-38),9);cubeV3(8,-48-stride,36,62,shade(base,-38),9);
- cubeV3(-49,-2+stride,44,19,'#263048',10);cubeV3(7,-2-stride,44,19,'#263048',10);
- cubeV3(-77,-143-stride,31,78,base,9);cubeV3(46,-143+stride,31,78,base,9);
- cubeV3(-77,-85-stride,31,22,dark,8);cubeV3(46,-85+stride,31,22,dark,8);
- cubeV3(-49,-151,98,107,base,13);
- cubeV3(-38,-123,76,53,shade(base,27),6);
- if(kind==='shoulders'){cubeV3(-90,-156,45,33,dark,11);cubeV3(44,-156,45,33,dark,11)}
- if(kind==='wings'){cubeV3(-35,-138,70,17,dark,5)}
- if(kind==='antenna'){cubeV3(-34,-258,6,31,'#a5eaff',2);cubeV3(25,-258,6,31,'#a5eaff',2);cubeV3(-39,-263,16,10,'#ff9bd7',3);cubeV3(20,-263,16,10,'#ff9bd7',3)}
- // Голова — всегда анфас, квадратная форма, лицо и оба глаза.
- let face=state.avatar==='Ниндзя'?'#263b59':state.avatar==='Космонавт'?'#d4e5f1':state.avatar==='Блочный робот'||state.avatar==='Кибергерой'?'#d2e5f1':'#e9c5a6';
- cubeV3(-46,-231,92,85,face,12);
- if(kind==='hood'){cubeV3(-52,-238,102,18,dark,10);cubeV3(-53,-228,15,62,dark,7);cubeV3(38,-228,15,62,dark,7)}
- if(kind==='visor'||state.avatar==='Космонавт'){cubeV3(-38,-215,76,40,'#1b4d75',4);rect(-29,-207,50,8,'#9bf4ff');rect(-30,-190,24,5,'#4176a2')}
- else{round(-32,-205,23,17,3,'#152840');round(9,-205,23,17,3,'#152840');rect(-29,-202,7,4,'#eaffff');rect(12,-202,7,4,'#eaffff');rect(-8,-171,16,4,'#50637c')}
- if(kind==='crown'){for(let i=0;i<3;i++)cubeV3(-50+i*34,-257-(i===1?8:0),30,27,'#ffe080',6);rect(-38,-228,76,8,'#ffbc58')}
- if(kind==='horns'){cubeV3(-48,-264,16,41,dark,5);cubeV3(32,-264,16,41,dark,5)}
- if(state.avatar==='Искатель'){cubeV3(-51,-244,102,11,'#73533b',7);cubeV3(-28,-258,56,19,'#8d694c',6)}
- if(state.avatar==='Кибергерой'){rect(-29,-178,58,5,'#6df6ed')}
- if(state.avatar==='Рыцарь'){rect(-38,-190,76,7,'#8a9db7')}
- if(state.avatar==='Ниндзя'){rect(-45,-191,90,23,'#25364e')}
- if(state.avatar==='Блочный робот'){cubeV3(-51,-238,101,14,dark,8)}
- // Разная экипировка на корпусе для разных скинов.
- rect(-29,-107,58,14,dark);rect(-20,-101,40,5,'#c9faff');
- if(kind==='wings')rect(-25,-131,50,10,'#ffd081');
- if(kind==='crown')rect(-25,-82,50,13,'#ffcf76');
- if(kind==='shoulders')rect(-29,-64,58,9,'#e0f6ff');
- if(kind==='horns')rect(-27,-81,56,12,'#ffcf63');
- if(kind==='halo')rect(-25,-87,50,13,'#d5b3ff');
- if(kind==='antenna')rect(-16,-87,32,14,'#8ffbff');
- if(kind==='hood')rect(-18,-86,36,12,'#66cabb');
+ // Отдельные ноги: противоположные фазы шагов.
+ cubeV3(-43,-52+step,35,64,shade(base,-43),9);
+ cubeV3(8,-52-step,35,64,shade(base,-43),9);
+ cubeV3(-49,-6+step,44,22,'#25314b',11);
+ cubeV3(7,-6-step,44,22,'#25314b',11);
+ // Руки идут вдоль туловища и качаются противоположно ногам.
+ cubeV3(-78,-141-step*.64,31,77,shade(base,-6),10);
+ cubeV3(47,-141+step*.64,31,77,shade(base,-6),10);
+ cubeV3(-80,-83-step*.64,33,23,dark,7);
+ cubeV3(48,-83+step*.64,33,23,dark,7);
+ cubeV3(-52,-151,104,110,shade(base,-10),13);
+ if(kind==='shoulders'){cubeV3(-94,-157,45,32,dark,12);cubeV3(49,-157,45,32,dark,12)}
+ // На спине виден объёмный рюкзак с светящимся энергоблоком.
+ cubeV3(-34,-132,68,64,dark,11);
+ cubeV3(-22,-122,44,36,shade(base,22),6);
+ rect(-14,-114,28,13,'#a8f7ff');
+ rect(-9,-109,18,4,'#f6ffff');
+ rect(-28,-66,56,8,'#14273c');
+ // Голова — задняя сторона шлема, никаких глаз или рта.
+ cubeV3(-47,-228,94,83,shade(base,-12),13);
+ cubeV3(-52,-233,104,16,dark,10);
+ rect(-34,-207,68,12,dark);
+ rect(-28,-204,56,4,'#b7efff');
+ rect(-24,-182,48,5,'#22344f');
+ if(kind==='visor'){
+  cubeV3(-35,-210,70,14,'#2b7190',6);
+  rect(-28,-205,55,4,'#80ecff');
+ }
+ if(kind==='hood'){
+  cubeV3(-53,-235,106,24,dark,10);
+  cubeV3(-51,-218,13,67,dark,7);cubeV3(38,-218,13,67,dark,7);
+ }
+ if(kind==='antenna'){
+  cubeV3(-35,-259,6,30,'#9eeaff',3);cubeV3(29,-259,6,30,'#9eeaff',3);
+  cubeV3(-40,-266,17,12,'#ff9be1',3);cubeV3(23,-266,17,12,'#ff9be1',3);
+ }
+ if(kind==='horns'){
+  cubeV3(-48,-263,15,40,dark,6);cubeV3(34,-263,15,40,dark,6);
+ }
+ if(kind==='crown'){
+  for(let i=0;i<3;i++)cubeV3(-50+i*34,-257-(i===1?7:0),29,28,'#ffe277',6);
+ }
+ if(state.avatar==='Искатель')cubeV3(-52,-238,104,10,'#785337',6);
+ if(state.avatar==='Кибергерой')rect(-29,-182,58,5,'#69f6e3');
+ if(state.avatar==='Рыцарь')rect(-29,-190,58,7,'#c2d6ea');
+ if(kind==='wings')rect(-25,-132,50,8,'#ffd979');
+ if(kind==='crown')rect(-27,-82,54,9,'#fbd078');
+ if(kind==='horns')rect(-26,-75,52,10,'#ffbb63');
  g.restore();
 }
 function sceneV3(){
