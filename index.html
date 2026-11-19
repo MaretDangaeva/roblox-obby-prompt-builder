@@ -179,7 +179,7 @@ function scene(){
  avatar(pal);
  if(state.particles){for(let i=0;i<13;i++){const x=300+((i*67+t*10*(1+i%3))%350),y=220+((i*44-t*23)%240+240)%240;rect(x,y,3+(i%2),3+(i%2),i%3?'#fff5acb2':'#83faffb4')}}
  // Глянцевый заголовок из интерфейса игры.
- round(21,19,224,45,11,'#0b1727c9');g.fillStyle='#fbfcff';g.font='900 20px system-ui';g.fillText((state.gameTitle||defaults.gameTitle).slice(0,17).toUpperCase(),37,49);round(735,21,139,37,11,'#131c32c7');g.fillStyle='#ffcf84';g.font='800 15px system-ui';g.fillText('💎 '+state.collectCount+'  •  🏁 3',747,46);
+ round(21,19,224,45,11,'#0b1727c9');g.fillStyle='#fbfcff';g.font='900 20px system-ui';g.fillText((state.gameTitle||defaults.gameTitle).slice(0,17).toUpperCase(),37,49);round(735,21,139,37,11,'#131c32c7');g.fillStyle='#ffcf84';g.font='800 15px system-ui';g.fillText('💎 '+state.collectCount+'  •  🏁 2',747,46);
 }
 function avatar(pal){
  const c1=pal[2],armor=state.avatar==='Блочный робот'||state.avatar==='Кибергерой',isNinja=state.avatar==='Ниндзя',isAstronaut=state.avatar==='Космонавт';
@@ -442,7 +442,7 @@ function sceneV3(){
  if(state.particles)for(let i=0;i<13;i++){let x=150+(i*63+t*13*(1+i%2))%580,y=270+((i*53-t*19)%190+190)%190;rect(x,y,3,3,i%3?'#fff9bfa0':'#83faffc8')}
  round(18,19,239,44,10,'#101c31c9');g.fillStyle='#f9fbff';g.font='900 20px system-ui';g.fillText((state.gameTitle||defaults.gameTitle).slice(0,17).toUpperCase(),32,48);
  round(698,19,184,40,10,'#101a30c9');g.fillStyle='#fff4c6';g.font='850 16px system-ui';
- const labels={'Монеты':'●','Кристаллы':'◆','Звёзды':'★','Энерго-кубы':'▣'};g.fillText(labels[state.collectible]+' '+state.collectCount+'   •   🏁 3',711,46);
+ const labels={'Монеты':'●','Кристаллы':'◆','Звёзды':'★','Энерго-кубы':'▣'};g.fillText(labels[state.collectible]+' '+state.collectCount+'   •   🏁 2',711,46);
  round(309,471,288,25,6,'#0a182dbd');g.textAlign='center';g.font='800 13px system-ui';g.fillStyle='#ffffff';g.fillText('3D ОБЪЁМ  ·  '+sk[0].toUpperCase(),450,488);g.textAlign='left';
 }
 // Обновление карточек и промпта с конкретными различиями, а не только со сменой цвета.
