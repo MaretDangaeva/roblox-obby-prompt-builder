@@ -17,6 +17,49 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
 .side{display:grid;grid-template-rows:auto auto;gap:18px}.previewPanel{padding:0;overflow:hidden}.head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #ffffff14}.head h3{margin:0;font-size:18px}.live{padding:7px 10px;border-radius:999px;background:#13233d;color:#8ddfff;border:1px solid #294468;font-size:11px;font-weight:900;letter-spacing:.08em}.frame{padding:12px 12px 0}.frame canvas{width:100%;aspect-ratio:16/9;display:block;border-radius:18px;background:#15223e;box-shadow:inset 0 0 0 1px #ffffff12}.frameInfo{padding:12px 18px 18px;color:#a9bfdc;font-size:13px;line-height:1.45}
 .promptPanel textarea{width:100%;height:420px;border:1px solid #2c4262;background:#0c1527;color:#f7fbff;border-radius:18px;padding:16px;resize:vertical;line-height:1.48}.rowTop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.rowTop h3{margin:0}.meta{font-size:12px;color:#9dc3eb;font-weight:800}.footer{margin-top:16px;color:#93add0;font-size:12px;text-align:center}
 @media (max-width:1060px){.shell{grid-template-columns:1fr}.promptPanel textarea{height:350px}}@media (max-width:640px){.wrap{width:min(100% - 18px,1280px)}.hero,.panel{border-radius:18px}.actions{grid-template-columns:1fr}.frame canvas{aspect-ratio:4/3}.promptPanel textarea{height:320px}}
+
+/* Компактная, читаемая компоновка для ноутбуков и телефонов */
+body{font-size:12.5px;line-height:1.38}
+.wrap{width:min(1240px,calc(100% - 28px));padding:12px 0 18px}
+.top{margin-bottom:10px;min-height:36px}
+.brand{font-size:14px;gap:8px}
+.brand i{height:34px;width:34px;border-radius:10px;font-size:18px}
+.pill{font-size:10px;padding:7px 10px}
+.hero{padding:14px 19px;margin-bottom:12px;border-radius:17px}
+.hero small{font-size:9px;margin-bottom:3px}
+.hero h1{font-size:clamp(24px,3.3vw,37px);line-height:1.08;margin:0 0 6px;letter-spacing:-.025em}
+.hero p{font-size:12px;line-height:1.4;max-width:none}
+.shell{grid-template-columns:385px minmax(0,1fr);gap:12px;align-items:start}
+.panel{padding:14px;border-radius:17px}
+.tabs{gap:6px;margin-bottom:10px}
+.tab{font-size:12px;padding:7px 10px;border-radius:10px}
+.section h2{font-size:17px;margin-bottom:2px}
+.desc{font-size:11.5px;line-height:1.42;margin-bottom:10px}
+.field{margin:10px 0 11px}
+.field label,.field .label{font-size:11.5px;margin-bottom:6px}
+input[type=text]{height:39px;border-radius:10px;font-size:12px;padding:0 10px}
+.chips{gap:6px}
+.chip{font-size:11.8px;min-height:35px;gap:6px;padding:6px 9px;border-radius:10px;font-weight:750}
+.chip .emoji{font-size:15px}.chip .dot{width:14px;height:14px;border-radius:4px}
+.check{padding:8px 10px;border-radius:10px;font-size:11.5px;gap:8px}
+.check input{margin:0}
+.rangeVal{font-size:11.5px;padding:6px 9px;border-radius:10px}
+.actions{gap:8px;margin-top:12px}
+.btn{height:42px;border-radius:11px;font-size:11.5px;letter-spacing:.01em}
+.side{gap:12px}
+.head{padding:10px 13px}
+.head h3{font-size:14px}
+.live{font-size:9px;padding:5px 8px}
+.frame{padding:9px 9px 0}
+.frame canvas{border-radius:12px}
+.frameInfo{padding:8px 13px 11px;font-size:11px}
+.rowTop{margin-bottom:8px}
+.rowTop h3{font-size:14px}
+.meta{font-size:10.5px}
+.promptPanel textarea{height:clamp(180px,23vh,245px);font-size:11.7px;line-height:1.42;padding:11px;border-radius:12px}
+.footer{font-size:10px;margin-top:12px}
+@media(max-width:930px){.shell{grid-template-columns:1fr}.hero p{font-size:12px}.promptPanel textarea{height:260px}}
+@media(max-width:640px){.wrap{width:calc(100% - 18px);padding-top:10px}.hero,.panel{border-radius:15px}.hero{padding:12px 14px}.hero h1{font-size:29px}.hero p{font-size:11.7px}.brand{font-size:12.5px}.brand i{width:31px;height:31px}.pill{font-size:8.5px;max-width:57%;text-align:center}.panel{padding:11px}.previewPanel{padding:0}.head{padding:9px 11px}.actions{grid-template-columns:1fr}.frame canvas{aspect-ratio:16/9}.promptPanel textarea{height:230px}.chip{font-size:11px;min-height:34px}}
 </style>
 </head>
 <body>
@@ -29,7 +72,7 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
   <section class="hero">
     <small>2D OBBY</small>
     <h1>Создай свою <em>Obby 2D</em></h1>
-    <p>Отдельные настройки мира, персонажа и врагов. Справа — только визуальное превью без игровых меню. Ниже — готовый промпт для Qwen, который просит сгенерировать простую 2D Obby-игру в HTML.</p>
+    <p>Выбери мир, персонажа и врагов — и скопируй готовый промпт для Qwen.</p>
   </section>
 
   <div class="shell">
@@ -60,7 +103,6 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
         <div class="field"><span class="label">Аксессуар</span><div class="chips" id="heroAccessory"></div></div>
         <div class="field"><span class="label">Что собирать?</span><div class="chips" id="collectible"></div></div>
         <div class="field"><span class="label">Количество предметов</span><div class="rangeRow"><input id="collectCount" type="range" min="6" max="12" step="1" value="8"><span class="rangeVal" id="collectValue">8</span></div></div>
-        <div class="field"><span class="label">Анимация героя</span><div class="chips" id="heroAnim"></div></div>
       </div>
 
       <div class="section" id="section-enemies">
@@ -73,7 +115,6 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
         <div class="field"><label class="check"><input type="checkbox" id="mobileUI" checked> Экранные кнопки для телефона</label></div>
       </div>
 
-      <div class="helper">Промпт всегда просит только одну простую 2D Obby-карту: 8 платформ, 1 чекпоинт, достижимый финиш, без стартового меню поверх игры и без внешних библиотек.</div>
       <div class="actions">
         <button class="btn secondary" id="reset" type="button">СБРОСИТЬ</button>
         <button class="btn primary" id="copyPrompt" type="button">СКОПИРОВАТЬ ПРОМПТ</button>
@@ -84,7 +125,7 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
       <section class="panel previewPanel">
         <div class="head"><h3>Превью</h3><span class="live">2D PREVIEW</span></div>
         <div class="frame"><canvas id="scenePreview" width="960" height="540"></canvas></div>
-        <div class="frameInfo">Это только визуальное превью. Игровых меню и кнопок поверх него нет.</div>
+        <div class="frameInfo">Визуальное превью выбранных настроек.</div>
       </section>
 
       <section class="panel promptPanel">
@@ -103,11 +144,11 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395
 const $=id=>document.getElementById(id);
 const defaults={
   title:'LAVA ESCAPE', world:'Лава', sky:'Закат', decor:'Башни', trap:'Шипы', parallax:true, hudShadow:true,
-  heroType:'Робот-новичок', heroColor:'Синий', heroAccessory:'Рюкзак', collectible:'Кристаллы', collectCount:8, heroAnim:'Ходьба + прыжок',
+  heroType:'Робот-новичок', heroColor:'Синий', heroAccessory:'Рюкзак', collectible:'Кристаллы', collectCount:8,
   enemyType:'Мини-боты', enemyCount:'2 врага', enemySpeed:'Медленно', enemyBehavior:'Патруль', mobileUI:true
 };
 let state={...defaults};
-const ids={world:'world',sky:'sky',decor:'decor',trap:'trap',heroType:'heroType',heroColor:'heroColor',heroAccessory:'heroAccessory',collectible:'collectible',heroAnim:'heroAnim',enemyType:'enemyType',enemyCount:'enemyCount',enemySpeed:'enemySpeed',enemyBehavior:'enemyBehavior'};
+const ids={world:'world',sky:'sky',decor:'decor',trap:'trap',heroType:'heroType',heroColor:'heroColor',heroAccessory:'heroAccessory',collectible:'collectible',enemyType:'enemyType',enemyCount:'enemyCount',enemySpeed:'enemySpeed',enemyBehavior:'enemyBehavior'};
 const options={
   world:[['Лава','🌋'],['Небо','☁️'],['Лёд','❄️'],['Город','🏙️']],
   sky:[['День','☀️'],['Закат','🌇'],['Ночь','🌙']],
@@ -117,7 +158,6 @@ const options={
   heroColor:[['Синий','#469df4'],['Зелёный','#55cd8f'],['Фиолетовый','#b08cff'],['Красный','#ff7368']],
   heroAccessory:[['Рюкзак','🎒'],['Кепка','🧢'],['Очки','🕶️'],['Без аксессуара','✖️']],
   collectible:[['Кристаллы','💎'],['Монеты','🪙'],['Звёзды','⭐'],['Кубики','🧊']],
-  heroAnim:[['Ходьба + прыжок','🏃'],['Только ходьба','🚶'],['Минимальная','•']],
   enemyType:[['Мини-боты','🤖'],['Слизни','🟢'],['Дроны','🛸'],['Пауки','🕷️']],
   enemyCount:[['Без врагов','0'],['2 врага','2'],['3 врага','3'],['4 врага','4']],
   enemySpeed:[['Медленно','🐢'],['Нормально','🚶'],['Быстро','⚡']],
@@ -156,12 +196,11 @@ function prompt(){
   const movingBg=state.parallax?'Фон сделай живым: 2–3 слоя параллакса, медленно движущиеся облака/частицы по теме мира и небольшое движение задних объектов.':'Фон статичный, но яркий и блочный.';
   const enemyLine=state.enemyCount==='Без врагов'?'Врагов не добавляй.':'Добавь '+state.enemyCount.toLowerCase()+' типа «'+enemyText[state.enemyType]+'». Поведение: '+state.enemyBehavior.toLowerCase()+'. Скорость врагов: '+state.enemySpeed.toLowerCase()+'. Они двигаются только по своей платформе, не падают, а игрок может их перепрыгнуть. При столкновении — респавн на чекпоинте.';
   const shadowLine=state.hudShadow?'Используй мягкие тени, объёмные верхние и боковые грани платформ, чтобы 2D-картинка была ближе к визуалу Roblox.':'Сделай чистый плоский 2D-визуал без сложных теней.';
-  const animLine=state.heroAnim==='Минимальная'?'У героя может быть только минимальная анимация движения.':'У героя добавь анимацию: '+state.heroAnim.toLowerCase()+'.';
   return [
 'Ты — разработчик браузерных игр. Напиши простую, полностью рабочую 2D Obby-игру с видом СБОКУ, но визуально похожую на Roblox. Никакого WebGL, изометрии и сложного 3D.',
 'Выведи только готовый HTML-код от <!DOCTYPE html> до </html>. Без пояснений, markdown и файлов. Весь проект — один HTML-файл со встроенными <style> и <script>. Без библиотек, внешних изображений и звуков. Код должен быть компактным и не длиннее 1000 строк.',
 'Название игры: «'+(state.title.trim()||'LAVA ESCAPE')+'». Мир: трасса '+worldText[state.world]+'. Время суток: '+skyText[state.sky]+'. Декорации: '+decorText[state.decor]+'. Стиль: яркий, блочный, дружелюбный, Roblox-inspired, но 2D. '+movingBg,
-'Герой: '+heroText[state.heroType]+' цвета '+state.heroColor.toLowerCase()+', аксессуар — '+accessoryText[state.heroAccessory]+'. Он состоит из отдельных прямоугольников: голова, корпус, руки, ноги. Силуэт должен напоминать Roblox-аватара в 2D: квадратная голова, широкое туловище, простые конечности, крупные ботинки. Персонаж смотрит по направлению движения вправо или влево, а не в камеру. '+animLine,
+'Герой: '+heroText[state.heroType]+' цвета '+state.heroColor.toLowerCase()+', аксессуар — '+accessoryText[state.heroAccessory]+'. Он состоит из отдельных прямоугольников: голова, корпус, руки, ноги. Силуэт должен напоминать Roblox-аватара в 2D: квадратная голова, широкое туловище, простые конечности, крупные ботинки. Персонаж смотрит по направлению движения вправо или влево, а не в камеру.',
 'Сделай одну горизонтальную 2D Obby-карту из 8 широких платформ с маленькими проходимыми разрывами. На 4-й платформе — один чекпоинт, на 8-й — финишная зона. Под платформами опасная поверхность. Используй только один тип ловушек: '+trapText[state.trap]+'. Размести 2 ловушки так, чтобы их было видно заранее и их можно было перепрыгнуть. Никаких невозможных прыжков.',
 'Коллекционные предметы: '+state.collectCount+' штук, тип — '+state.collectible.toLowerCase()+'. После касания предмет исчезает, счётчик увеличивается на 1. Все собирать для победы необязательно.',
  enemyLine,
