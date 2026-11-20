@@ -23,7 +23,7 @@
 <div class="actions"><button type="button" class="button" id="reset">↺ Сбросить</button><button type="button" class="button primary" id="copyPromptTop">📋 Скопировать промпт</button></div>
 </section>
 <div class="right">
-<section class="panel view"><div class="headerRow"><span>Превью оформления Obby</span><span class="live">БЕЗ МЕНЮ</span></div><div class="frame"><canvas id="scenePreview" width="900" height="506" role="img" aria-label="Иллюстрация 2D Obby без игрового меню"></canvas></div><p class="help">Это иллюстрация выбранного оформления, не запущенная игра. Скопируй промпт в Qwen.</p></section>
+<section class="panel view"><div class="headerRow"><span>Живое превью Obby</span><span class="live">АНИМАЦИЯ</span></div><div class="frame"><canvas id="scenePreview" width="900" height="506" role="img" aria-label="Иллюстрация 2D Obby без игрового меню"></canvas></div><p class="help">Двигай указателем по превью: фон реагирует. Облака и враги движутся. Это не игра — скопируй промпт в Qwen.</p></section>
 <section class="panel promptPanel"><div class="headerRow"><span>Промпт для Qwen</span><span class="meta" id="chars">0 символов</span></div><textarea id="prompt" readonly spellcheck="false" aria-label="Текст для генерации 2D Obby в Qwen"></textarea><button type="button" id="copyPrompt" class="button primary copyAll">📋 Скопировать промпт для Qwen</button></section>
 </div>
 </main>
@@ -44,13 +44,13 @@ function prompt(){
  'Ты — разработчик браузерных игр. Напиши простую, полностью РАБОЧУЮ 2D Obby-игру с ВИДОМ СБОКУ. Никакого 3D, WebGL и изометрии.',
  'Название: «'+(state.title.trim()||'LAVA ESCAPE')+'». Мир: трасса '+worlds[state.world]+'. Герой — блочный '+state.hero.toLowerCase()+' робот из отдельных прямоугольников (голова, корпус, руки, ноги). Персонаж смотрит по направлению движения ВПРАВО или ВЛЕВО, не в камеру.',
  'Нужна ОДНА горизонтальная трасса из 8 ШИРОКИХ платформ, с небольшими проходимыми разрывами. Всего 1 чекпоинт в середине карты и финиш на последней платформе. Только одна разновидность ловушек: '+traps[state.trap]+', размести 2 ловушки с безопасной возможностью перепрыгнуть. Под платформами опасная поверхность.',
- '6 коллекционных предметов: '+state.item.toLowerCase()+'. При касании предмет исчезает и счётчик увеличивается. Для победы собирать все необязательно.',
+ '6 коллекционных предметов: '+state.item.toLowerCase()+'. При касании предмет исчезает и счётчик увеличивается. Для победы собирать все необязательно. Добавь ДВУХ ПРОСТЫХ ВРАГОВ (например, маленькие квадратные роботы) на отдельных широких платформах: каждый медленно ходит влево-вправо по короткому отрезку, не выходит за край. Игрок может легко перепрыгнуть их. При столкновении с врагом — возрождение у чекпоинта. Не размещай врагов на старте, прямо на чекпоинте или у финишного портала.',
  'Управление: стрелки влево/вправо или A/D — горизонтальное движение, Space/W/стрелка вверх — прыжок. На телефоне экранные кнопки: влево, вправо, прыжок.',
  'ПРОСТАЯ 2D-ФИЗИКА: у персонажа есть x, y, vx, vy; гравитация примерно 1500 пикселей/с², сила прыжка примерно -515, скорость движения около 245 пикселей/с. Платформы — прямоугольники {x,y,w,h}; проверяй приземление сверху при пересечении во время падения. Камера движется только горизонтально за героем. Не делай невозможных прыжков.',
  'При падении или касании опасности герой сразу возрождается на старте/чекпоинте, попытки без ограничений. Игра начинается сразу без стартового меню. HUD: предметы, время, чекпоинт, падения. Экран «🏆 ПОБЕДА!» с кнопкой «Играть снова».',
- 'Визуал яркий, пиксельный и блочный, фон с облаками, простые анимации бега и прыжка. Без сложных эффектов, меню скинов, вращающихся объектов и движущихся платформ.',
+ 'Визуал яркий, пиксельный и блочный. СДЕЛАЙ ЖИВОЙ ФОН: 2–3 слоя параллакса, медленно плывущие облака, лёгкое движение лавы/облаков/снега по теме мира. Только простые прямоугольники и Canvas, без тяжёлых эффектов. Герой анимируется при беге и прыжке. Без меню скинов, сложных вращающихся объектов и движущихся платформ.',
  'КОД: одна HTML-страница с CSS в <style> и JS в <script>. Только Canvas и чистый JavaScript. Никаких внешних файлов, библиотек, картинок и звуков. requestAnimationFrame. СРАЗУ ПРОВЕРЬ, ЧТО ИГРА ЗАПУСКАЕТСЯ И ФИНИШ ДОСТИЖИМ.',
- 'Ответ: ТОЛЬКО HTML-код от <!DOCTYPE html> до </html> без пояснений и Markdown. Не больше 1000 строк, лучше 200–450. Код для прямой вставки в HTML-панель CodePen.'
+ 'Ответ: ТОЛЬКО HTML-код от <!DOCTYPE html> до </html> без пояснений и Markdown. Не больше 1000 строк. Код для прямой вставки в HTML-панель CodePen.'
  ].join('\n\n');
 }
 function buildOptions(){Object.keys(ids).forEach(k=>{const root=$(ids[k]);for(const [name,icon] of opts[k]){const b=document.createElement('button');b.type='button';b.className='choice';b.dataset.value=name;b.setAttribute('aria-pressed',String(name===state[k]));const pic=document.createElement('span');pic.className=k==='hero'?'color':'emoji';if(k==='hero')pic.style.background=icon;else pic.textContent=icon;const text=document.createElement('span');text.textContent=name;b.append(pic,text);b.addEventListener('click',()=>{state[k]=name;refresh()});root.appendChild(b)}})}
@@ -60,40 +60,109 @@ async function copy(value,button){const label=button.textContent;let ok=false;tr
 $('copyPrompt').addEventListener('click',()=>copy(prompt(),$('copyPrompt')));
 $('copyPromptTop').addEventListener('click',()=>copy(prompt(),$('copyPromptTop')));
 
+const previewCanvas=$('scenePreview');
+let previewTime=0,mouseX=0,mouseY=0,targetMouseX=0,targetMouseY=0;
+function trackPointer(e){
+ const r=previewCanvas.getBoundingClientRect();
+ targetMouseX=((e.clientX-r.left)/Math.max(1,r.width)-.5)*2;
+ targetMouseY=((e.clientY-r.top)/Math.max(1,r.height)-.5)*2;
+}
+previewCanvas.addEventListener('pointermove',trackPointer);
+previewCanvas.addEventListener('pointerleave',()=>{targetMouseX=0;targetMouseY=0});
 function drawPreview(){
- const canvas=$('scenePreview'),g=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
- const worlds={Лава:['#31193e','#e68b64','#ff723c','#66ddd8'],Небо:['#276eac','#b9e9fb','#d4f0fc','#79d8a6'],Лёд:['#4b81b5','#d1f1ff','#8dd1f4','#d5f7ff']};
- const pal=worlds[state.world],color={Синий:'#439df4',Зелёный:'#50ce93',Фиолетовый:'#b58cf8'}[state.hero];
+ const g=previewCanvas.getContext('2d'),w=previewCanvas.width,h=previewCanvas.height;
+ const t=previewTime;
+ const worlds={
+  Лава:['#31193e','#df8278','#ff723c','#66ddd8'],
+  Небо:['#276eac','#b9e9fb','#d4f0fc','#79d8a6'],
+  Лёд:['#4b81b5','#d1f1ff','#8dd1f4','#d5f7ff']
+ };
+ const pal=worlds[state.world];
+ const color={Синий:'#439df4',Зелёный:'#50ce93',Фиолетовый:'#b58cf8'}[state.hero];
  const rect=(x,y,ww,hh,c)=>{g.fillStyle=c;g.fillRect(x,y,ww,hh)};
  const polygon=(pts,c)=>{g.beginPath();g.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)g.lineTo(pts[i][0],pts[i][1]);g.closePath();g.fillStyle=c;g.fill()};
- const grad=g.createLinearGradient(0,0,0,h);grad.addColorStop(0,pal[0]);grad.addColorStop(.75,pal[1]);grad.addColorStop(1,pal[2]);g.fillStyle=grad;g.fillRect(0,0,w,h);
- for(let i=0;i<8;i++){const x=i*139-40,y=70+(i%3)*45;rect(x,y+11,104,23,'#ffffff32');rect(x+20,y,69,27,'#ffffff40')}
- // Blocks in the background, receding to create a colourful layered scene.
- for(let i=0;i<8;i++){const x=i*148-28,yy=270+i%3*21;rect(x,yy,115,40,pal[0]+'77');rect(x+28,yy-22,54,27,pal[0]+'60')}
- const under=g.createLinearGradient(0,350,0,h);under.addColorStop(0,pal[2]);under.addColorStop(1,pal[0]);
+ const grad=g.createLinearGradient(0,0,0,h);
+ grad.addColorStop(0,pal[0]);grad.addColorStop(.75,pal[1]);grad.addColorStop(1,pal[2]);
+ rect(0,0,w,h,grad);
+ // Parallax mountains and towers shift gently with the pointer.
+ for(let i=0;i<9;i++){
+  const x=i*127-75-mouseX*14+(t*1.5)%127;
+  const y=234+(i%3)*23-mouseY*7;
+  rect(x,y,90,110,pal[0]+'4d');
+  rect(x+15,y-30,48,38,pal[0]+'38');
+ }
+ // Two layers of slowly drifting blocky clouds (or snow haze).
+ for(let layer=0;layer<2;layer++){
+  const speed=layer?7:16,shift=layer?mouseX*15:mouseX*30;
+  for(let i=0;i<8;i++){
+   const x=((i*154-speed*t-shift)%1110+1110)%1110-130;
+   const y=48+layer*65+(i%3)*29-mouseY*(layer?9:18);
+   const alpha=layer?'#ffffff31':'#ffffff64';
+   rect(x,y+12,104,21,alpha);rect(x+19,y,59,28,alpha);
+   rect(x+74,y+7,42,19,alpha);
+  }
+ }
+ // Animated danger surface: shifting glints and floating sparks/snow.
+ const under=g.createLinearGradient(0,350,0,h);
+ under.addColorStop(0,pal[2]);under.addColorStop(1,pal[0]);
  rect(0,365,w,h-365,under);
- for(let i=0;i<15;i++){const x=i*71+(i%3)*16,y=391+(i%4)*27;rect(x,y,42+(i%3)*12,5,state.world==='Лава'?'#ffde7e8a':'#f4ffff77')}
+ for(let i=0;i<23;i++){
+  const x=((i*79+(i%3?12:-9)*t)%1000+1000)%1000-40;
+  const y=382+(i%5)*27+Math.sin(t*1.3+i)*4;
+  rect(x,y,25+(i%3)*15,3,state.world==='Лава'?'#ffe69e77':'#f5ffff75');
+ }
+ if(state.world==='Лава'){
+  for(let i=0;i<16;i++){
+   const x=(i*83+t*(i%2?13:-10)+900)%900;
+   const y=376+(i*37)%118+Math.sin(t+i)*6;
+   rect(x,y,4,4,'#ffd88c88');
+  }
+ }
+ if(state.world==='Лёд'){
+  for(let i=0;i<24;i++){
+   const x=((i*73+t*(i%2?8:-6))%900+900)%900;
+   const y=(i*49+t*18)%370;
+   rect(x,y,3,6,'#ffffff9e');
+  }
+ }
  const platforms=[[27,335,144],[200,325,134],[358,317,143],[532,326,147],[707,321,160]];
- platforms.forEach(([x,y,ww],i)=>{
-  rect(x,y,ww,28,pal[3]);rect(x,y+25,ww,23,state.world==='Лёд'?'#588fae':'#286d79');
+ platforms.forEach(([x,y,ww])=>{
+  rect(x,y,ww,28,pal[3]);
+  rect(x,y+25,ww,23,state.world==='Лёд'?'#588fae':'#286d79');
   rect(x+3,y+3,ww-6,5,'#ffffff73');
   for(let j=14;j<ww;j+=26)rect(x+j,y+31,12,4,'#192b4960');
  });
- // Collectibles have different shapes, not just different colours.
+ // Floating items, each with its own silhouette.
  const collect=[[237,291],[399,285],[570,294],[761,288]];
  collect.forEach(([x,y],i)=>{
-  g.save();g.translate(x,y);
-  if(state.item==='Монеты'){g.fillStyle='#ffce62';g.beginPath();g.ellipse(0,0,11,14,0,0,7);g.fill();g.strokeStyle='#fff1b1';g.lineWidth=3;g.beginPath();g.ellipse(0,0,7,10,0,0,7);g.stroke()}
-  else if(state.item==='Звёзды'){g.fillStyle='#ffe37f';g.font='bold 30px system-ui';g.textAlign='center';g.fillText('★',0,10)}
-  else polygon([[0,-17],[12,-2],[0,16],[-12,-2]],'#80f8fc');
+  g.save();g.translate(x,y+Math.sin(t*2+i)*5);
+  if(state.item==='Монеты'){
+   g.fillStyle='#ffce62';g.beginPath();g.ellipse(0,0,11,14,0,0,7);g.fill();
+   g.strokeStyle='#fff1b1';g.lineWidth=3;g.beginPath();g.ellipse(0,0,7,10,0,0,7);g.stroke();
+  }else if(state.item==='Звёзды'){
+   g.fillStyle='#ffe37f';g.font='bold 30px system-ui';g.textAlign='center';g.fillText('★',0,10);g.textAlign='left';
+  }else polygon([[0,-17],[12,-2],[0,16],[-12,-2]],'#80f8fc');
   g.restore();
  });
- // A clearly visible simple obstacle with a safe approach.
+ // Selected obstacle remains visible, distinct from the patrolling enemies.
  if(state.trap==='Красные блоки'){rect(483,295,31,27,'#fa5c6d');rect(488,298,20,5,'#ffccd1')}
  if(state.trap==='Шипы')for(let i=0;i<3;i++)polygon([[474+i*15,320],[482+i*15,296],[489+i*15,320]],'#3b2345');
  if(state.trap==='Лазер'){rect(487,281,10,41,'#ef477b');rect(490,284,4,35,'#ffe1ec')}
- // Robot side-view. Two legs, two arms, a torso and a head, facing the course.
- const x=107,y=331;
+ // Two little enemy bots patrol safely within their platforms.
+ function enemy(cx,ground,phase,shade){
+  const patrol=Math.sin(t*1.15+phase)*26,xx=cx+patrol,yy=ground-30;
+  const lookingRight=Math.cos(t*1.15+phase)>0;
+  rect(xx-18,yy+7,36,24,shade);
+  rect(xx-14,yy,28,9,'#ffd9e4');
+  rect(xx-20,yy+26,11,8,'#29314e');rect(xx+9,yy+26,11,8,'#29314e');
+  rect(xx+(lookingRight?5:-12),yy+12,7,7,'#283047');
+  rect(xx+(lookingRight?8:-10),yy+14,2,2,'#ffffff');
+  rect(xx-16,yy+19,32,3,'#ffffff50');
+ }
+ enemy(265,325,.8,'#ff789a');
+ enemy(781,321,2.3,'#d7a1ff');
+ // Robot standing side-on, facing right, distinct from enemies.
+ const x=107,y=331+Math.sin(t*2)*2;
  rect(x-15,y-24,13,25,'#28324f');rect(x+4,y-24,13,25,'#28324f');
  rect(x-16,y-3,17,8,'#1b2845');rect(x+3,y-3,17,8,'#1b2845');
  rect(x-27,y-74,16,44,color);rect(x+17,y-74,15,44,color);
@@ -101,10 +170,18 @@ function drawPreview(){
  rect(x-14,y-128,39,40,color);rect(x-12,y-125,35,5,'#ffffff7b');
  rect(x+12,y-110,9,9,'#17243d');rect(x+16,y-107,3,2,'#e5ffff');
  rect(x+23,y-100,8,4,'#1d3653');
- // A quiet decorative title, not a gameplay menu or overlay.
+ // Non-interactive title label: not a menu and no buttons.
  rect(19,20,227,43,'#0f2135ba');g.fillStyle='#fff';g.font='900 21px system-ui';
  g.fillText((state.title.trim()||'LAVA ESCAPE').toUpperCase().slice(0,16),32,49);
 }
+function animatePreview(now){
+ previewTime=Math.min(now/1000,1e8);
+ mouseX+=(targetMouseX-mouseX)*.08;
+ mouseY+=(targetMouseY-mouseY)*.08;
+ drawPreview();
+ requestAnimationFrame(animatePreview);
+}
+requestAnimationFrame(animatePreview);
 
 buildOptions();refresh();
 })();
