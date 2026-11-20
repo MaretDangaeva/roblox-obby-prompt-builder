@@ -3,41 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>FLYLAB OBBY 2D — конструктор промптов</title>
+<title>Obby 2D — конструктор промптов</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0}body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at top left,#5a3350 0,transparent 28%),radial-gradient(circle at top right,#204668 0,transparent 32%),#0f1322;color:#eef4ff}
-button,input,textarea{font:inherit}button{cursor:pointer}
-.wrap{width:min(1260px,calc(100% - 28px));margin:0 auto;padding:22px 0 28px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em}.brand i{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#ffb36a,#ff6f93);color:#101423;font-style:normal;font-size:22px;box-shadow:0 10px 30px #ff7a7a3a}.badge{padding:8px 12px;border-radius:999px;background:#121b32;border:1px solid #ffffff1f;color:#ffd28d;font-size:12px;font-weight:800}
-.hero{margin-bottom:18px}.heroCard,.panel{background:linear-gradient(180deg,#19233f,#101829);border:1px solid #ffffff1a;border-radius:22px;box-shadow:0 20px 40px #00000024}.heroCard{padding:24px 26px}.hero small{display:inline-block;color:#ffbf83;font-weight:900;letter-spacing:.12em;margin-bottom:10px}.hero h1{font-size:clamp(32px,4.8vw,54px);line-height:1.05;margin:0 0 12px;letter-spacing:-.04em}.hero h1 em{font-style:normal;color:#89ebff}.hero p{margin:0;color:#c5d7f3;line-height:1.55;max-width:62ch}
-
-.shell{display:grid;grid-template-columns:420px 1fr;gap:18px}.panel{padding:18px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid #31486c;background:#142036;color:#d6e4fb;padding:10px 12px;border-radius:12px;font-weight:800}.tab[aria-pressed=true]{background:linear-gradient(135deg,#ffbe7c,#ff8e6d);color:#11162b;border-color:#ffbe7c}.section{display:none}.section.active{display:block}.section h2{margin:0 0 4px;font-size:22px}.desc{margin:0 0 14px;color:#a9c0de;font-size:14px;line-height:1.45}.field{margin:14px 0 16px}.field label,.field .label{display:block;margin:0 0 8px;font-size:13px;font-weight:800;color:#cfe0fb}
-input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #385075;background:#0d1730;color:#fff;padding:0 14px;outline:none}input[type=text]:focus{border-color:#85ddff;box-shadow:0 0 0 4px #85ddff1f}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #30476a;background:#101a30;color:#deebff;border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-weight:800;min-height:44px}.chip[aria-pressed=true]{background:linear-gradient(135deg,#7ef0ff,#79bdff);border-color:#9df2ff;color:#0f1730}.chip .dot{width:16px;height:16px;border-radius:6px;box-shadow:inset 0 0 0 2px #ffffff61}.chip .emoji{font-size:18px;line-height:1}
-.rangeRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.rangeVal{min-width:42px;text-align:center;padding:8px 10px;border-radius:12px;background:#0e172d;border:1px solid #2a4261;font-weight:900;color:#fff0bf}input[type=range]{width:100%}
-.check{display:flex;align-items:center;gap:10px;background:#0f1930;border:1px solid #273d5b;border-radius:14px;padding:10px 12px;color:#dbe6fb;font-weight:700}.check input{accent-color:#8de8ff}
+*{box-sizing:border-box}html,body{margin:0}body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at top left,#5f3553 0,transparent 26%),radial-gradient(circle at top right,#21486d 0,transparent 30%),#0f1424;color:#eef5ff}button,input,textarea{font:inherit}button{cursor:pointer}
+.wrap{width:min(1280px,calc(100% - 28px));margin:0 auto;padding:22px 0 26px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.06em}.brand i{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#ffb56d,#ff6f93);color:#101423;font-style:normal;font-size:22px;box-shadow:0 12px 28px #ff7d7d35}.pill{padding:8px 12px;border-radius:999px;background:#121b32;border:1px solid #ffffff1a;color:#ffe0a0;font-size:12px;font-weight:900;letter-spacing:.06em}
+.hero,.panel{background:linear-gradient(180deg,#192540,#10192a);border:1px solid #ffffff1a;border-radius:22px;box-shadow:0 22px 42px #00000024}.hero{padding:24px;margin-bottom:18px}.hero small{display:inline-block;color:#ffbe81;font-weight:900;letter-spacing:.12em;margin-bottom:10px}.hero h1{margin:0 0 10px;font-size:clamp(30px,5vw,56px);line-height:.94;letter-spacing:-.04em}.hero h1 em{font-style:normal;color:#8cecff}.hero p{margin:0;max-width:74ch;color:#c7d7ef;line-height:1.55}
+.shell{display:grid;grid-template-columns:440px 1fr;gap:18px}.panel{padding:18px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab{border:1px solid #304769;background:#131f35;color:#dce9ff;padding:10px 12px;border-radius:12px;font-weight:900}.tab[aria-pressed=true]{background:linear-gradient(135deg,#ffc47f,#ff8f77);color:#111829;border-color:#ffc47f}.section{display:none}.section.active{display:block}.section h2{margin:0 0 4px;font-size:22px}.desc{margin:0 0 14px;color:#a9c0de;font-size:14px;line-height:1.45}.field{margin:14px 0 16px}.field label,.field .label{display:block;margin-bottom:8px;font-size:13px;font-weight:800;color:#d2e1fb}
+input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #395074;background:#0d1730;color:#fff;padding:0 14px;outline:none}input[type=text]:focus{border-color:#87e0ff;box-shadow:0 0 0 4px #87e0ff1f}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{border:1px solid #30476a;background:#101a30;color:#deebff;border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:8px;font-weight:800;min-height:44px}.chip[aria-pressed=true]{background:linear-gradient(135deg,#82efff,#79bdff);border-color:#9cf2ff;color:#101a2c}.chip .dot{width:16px;height:16px;border-radius:6px;box-shadow:inset 0 0 0 2px #ffffff61}.chip .emoji{font-size:18px;line-height:1}
+.rangeRow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.rangeVal{min-width:48px;text-align:center;padding:8px 10px;border-radius:12px;background:#0e172d;border:1px solid #2a4261;font-weight:900;color:#fff0bf}input[type=range]{width:100%}.check{display:flex;align-items:center;gap:10px;background:#0f1930;border:1px solid #273d5b;border-radius:14px;padding:10px 12px;color:#dbe6fb;font-weight:700}.check input{accent-color:#8de8ff}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.btn{height:50px;border:0;border-radius:16px;font-weight:900}.btn.secondary{background:#111c34;color:#d9e8ff;border:1px solid #2d4260}.btn.primary{background:linear-gradient(135deg,#ffbf7d,#ff8d76);color:#111829;box-shadow:0 12px 24px #ff8d7630}
 .helper{padding:12px 14px;border-radius:16px;background:#0d162b;border:1px solid #263854;color:#9eb9db;font-size:13px;line-height:1.45}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.btn{height:48px;border:0;border-radius:16px;font-weight:900}.btn.secondary{background:#111c34;color:#d9e8ff;border:1px solid #2d4260}.btn.primary{background:linear-gradient(135deg,#ffbf7d,#ff8d76);color:#111829;box-shadow:0 12px 24px #ff8d7630}
 .side{display:grid;grid-template-rows:auto auto;gap:18px}.previewPanel{padding:0;overflow:hidden}.head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid #ffffff14}.head h3{margin:0;font-size:18px}.live{padding:7px 10px;border-radius:999px;background:#13233d;color:#8ddfff;border:1px solid #294468;font-size:11px;font-weight:900;letter-spacing:.08em}.frame{padding:12px 12px 0}.frame canvas{width:100%;aspect-ratio:16/9;display:block;border-radius:18px;background:#15223e;box-shadow:inset 0 0 0 1px #ffffff12}.frameInfo{padding:12px 18px 18px;color:#a9bfdc;font-size:13px;line-height:1.45}
-.promptPanel textarea{width:100%;height:410px;border:1px solid #2c4262;background:#0c1527;color:#f7fbff;border-radius:18px;padding:16px;resize:vertical;line-height:1.48}.rowTop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.rowTop h3{margin:0}.meta{font-size:12px;color:#9dc3eb;font-weight:800}
-.footer{margin-top:16px;color:#93add0;font-size:12px;text-align:center}
-@media (max-width:1060px){.shell{grid-template-columns:1fr}.side{grid-template-rows:auto auto}.promptPanel textarea{height:360px}}
-@media (max-width:640px){.wrap{width:min(100% - 18px,1260px)}.heroCard,.panel{border-radius:18px}.actions{grid-template-columns:1fr}.promptPanel textarea{height:330px}.frame canvas{aspect-ratio:4/3}}
+.promptPanel textarea{width:100%;height:420px;border:1px solid #2c4262;background:#0c1527;color:#f7fbff;border-radius:18px;padding:16px;resize:vertical;line-height:1.48}.rowTop{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.rowTop h3{margin:0}.meta{font-size:12px;color:#9dc3eb;font-weight:800}.footer{margin-top:16px;color:#93add0;font-size:12px;text-align:center}
+@media (max-width:1060px){.shell{grid-template-columns:1fr}.promptPanel textarea{height:350px}}@media (max-width:640px){.wrap{width:min(100% - 18px,1280px)}.hero,.panel{border-radius:18px}.actions{grid-template-columns:1fr}.frame canvas{aspect-ratio:4/3}.promptPanel textarea{height:320px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top">
-    <div class="brand"><i>▣</i><span>FLYLAB OBBY 2D</span></div>
-    <div class="badge">QWEN · PROMPT BUILDER</div>
+    <div class="brand"><i>▣</i><span>OBBY 2D</span></div>
+    <div class="pill">ТОЛЬКО КОНСТРУКТОР ПРОМПТОВ</div>
   </div>
 
   <section class="hero">
-    <div class="heroCard">
-      <small>КОНСТРУКТОР 2D OBBY</small>
-      <h1>Создай свою <em>Obby 2D</em></h1>
-      <p>Выбери мир, персонажа и врагов. Посмотри, как выглядит игра, и скопируй готовый промпт для Qwen.</p>
-    </div>
+    <small>2D OBBY</small>
+    <h1>Создай свою <em>Obby 2D</em></h1>
+    <p>Отдельные настройки мира, персонажа и врагов. Справа — только визуальное превью без игровых меню. Ниже — готовый промпт для Qwen, который просит сгенерировать простую 2D Obby-игру в HTML.</p>
   </section>
 
   <div class="shell">
@@ -50,29 +42,25 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #385
 
       <div class="section active" id="section-world">
         <h2>Настройки мира</h2>
-        <p class="desc">Тема карты, атмосфера и ловушки.</p>
-        <div class="field">
-          <label for="title">Название игры</label>
-          <input id="title" type="text" value="LAVA ESCAPE" maxlength="42" placeholder="Название игры">
-        </div>
+        <p class="desc">Тема карты, атмосфера, окружение и ловушки.</p>
+        <div class="field"><label for="title">Название игры</label><input id="title" type="text" value="LAVA ESCAPE" maxlength="42" placeholder="Название игры"></div>
         <div class="field"><span class="label">Тема мира</span><div class="chips" id="world"></div></div>
         <div class="field"><span class="label">Время суток</span><div class="chips" id="sky"></div></div>
+        <div class="field"><span class="label">Тип декораций</span><div class="chips" id="decor"></div></div>
         <div class="field"><span class="label">Тип ловушек</span><div class="chips" id="trap"></div></div>
-        <div class="field">
-          <span class="label">Фон</span>
-          <label class="check"><input type="checkbox" id="parallax" checked> Включить движущийся фон и параллакс</label>
-        </div>
+        <div class="field"><label class="check"><input type="checkbox" id="parallax" checked> Движущийся фон и параллакс</label></div>
+        <div class="field"><label class="check"><input type="checkbox" id="hudShadow" checked> Мягкие тени и объём у платформ</label></div>
       </div>
 
       <div class="section" id="section-hero">
         <h2>Настройки персонажа</h2>
-        <p class="desc">Вид героя, цвет и предметы на карте.</p>
+        <p class="desc">Тип героя, цвет, предметы и немного поведения.</p>
         <div class="field"><span class="label">Тип героя</span><div class="chips" id="heroType"></div></div>
         <div class="field"><span class="label">Цвет героя</span><div class="chips" id="heroColor"></div></div>
+        <div class="field"><span class="label">Аксессуар</span><div class="chips" id="heroAccessory"></div></div>
         <div class="field"><span class="label">Что собирать?</span><div class="chips" id="collectible"></div></div>
-        <div class="field"><span class="label">Количество предметов</span>
-          <div class="rangeRow"><input id="collectCount" type="range" min="6" max="10" step="1" value="6"><span class="rangeVal" id="collectValue">6</span></div>
-        </div>
+        <div class="field"><span class="label">Количество предметов</span><div class="rangeRow"><input id="collectCount" type="range" min="6" max="12" step="1" value="8"><span class="rangeVal" id="collectValue">8</span></div></div>
+        <div class="field"><span class="label">Анимация героя</span><div class="chips" id="heroAnim"></div></div>
       </div>
 
       <div class="section" id="section-enemies">
@@ -81,64 +69,59 @@ input[type=text]{width:100%;height:48px;border-radius:14px;border:1px solid #385
         <div class="field"><span class="label">Тип врагов</span><div class="chips" id="enemyType"></div></div>
         <div class="field"><span class="label">Количество врагов</span><div class="chips" id="enemyCount"></div></div>
         <div class="field"><span class="label">Скорость врагов</span><div class="chips" id="enemySpeed"></div></div>
-        <div class="field"><label class="check"><input type="checkbox" id="mobileUI" checked> Добавить экранные кнопки для телефона</label></div>
+        <div class="field"><span class="label">Поведение врагов</span><div class="chips" id="enemyBehavior"></div></div>
+        <div class="field"><label class="check"><input type="checkbox" id="mobileUI" checked> Экранные кнопки для телефона</label></div>
       </div>
 
-      <div class="helper">Итоговый промпт просит у Qwen сделать только одну 2D Obby-карту с простыми платформами, одним чекпоинтом, достижимым финишем и компактным HTML-кодом.</div>
+      <div class="helper">Промпт всегда просит только одну простую 2D Obby-карту: 8 платформ, 1 чекпоинт, достижимый финиш, без стартового меню поверх игры и без внешних библиотек.</div>
       <div class="actions">
-        <button class="btn secondary" id="reset" type="button">↺ Сбросить</button>
-        <button class="btn primary" id="copyPrompt" type="button">📋 Скопировать промпт</button>
+        <button class="btn secondary" id="reset" type="button">СБРОСИТЬ</button>
+        <button class="btn primary" id="copyPrompt" type="button">СКОПИРОВАТЬ ПРОМПТ</button>
       </div>
     </section>
 
     <div class="side">
       <section class="panel previewPanel">
-        <div class="head"><h3>Превью Roblox-style 2D</h3><span class="live">ANIMATED PREVIEW</span></div>
-        <div class="frame"><canvas id="scenePreview" width="960" height="540" aria-label="2D-превью Roblox-style Obby"></canvas></div>
-        <div class="frameInfo">Фон двигается, облака плывут, враги патрулируют платформы. Это только визуальное превью: игровых кнопок и всплывающего меню здесь нет.</div>
+        <div class="head"><h3>Превью</h3><span class="live">2D PREVIEW</span></div>
+        <div class="frame"><canvas id="scenePreview" width="960" height="540"></canvas></div>
+        <div class="frameInfo">Это только визуальное превью. Игровых меню и кнопок поверх него нет.</div>
       </section>
 
       <section class="panel promptPanel">
-        <div class="rowTop"><h3>Готовый промпт для Qwen</h3><span class="meta" id="chars">0 символов</span></div>
+        <div class="rowTop"><h3>Промпт</h3><span class="meta" id="chars">0 символов</span></div>
         <textarea id="prompt" readonly spellcheck="false"></textarea>
       </section>
     </div>
   </div>
 
-  <div class="footer">FLYLAB OBBY 2D · мир / персонаж / враги · только промпт, без меню поверх превью</div>
+  <div class="footer">Obby 2D · мир · персонаж · враги</div>
 </div>
 
 <script>
 (()=>{
 'use strict';
 const $=id=>document.getElementById(id);
-const defs={
-  title:'LAVA ESCAPE',
-  world:'Лава',
-  sky:'Закат',
-  trap:'Шипы',
-  parallax:true,
-  heroType:'Робот-новичок',
-  heroColor:'Синий',
-  collectible:'Кристаллы',
-  collectCount:6,
-  enemyType:'Мини-боты',
-  enemyCount:'2 врага',
-  enemySpeed:'Медленно',
-  mobileUI:true
+const defaults={
+  title:'LAVA ESCAPE', world:'Лава', sky:'Закат', decor:'Башни', trap:'Шипы', parallax:true, hudShadow:true,
+  heroType:'Робот-новичок', heroColor:'Синий', heroAccessory:'Рюкзак', collectible:'Кристаллы', collectCount:8, heroAnim:'Ходьба + прыжок',
+  enemyType:'Мини-боты', enemyCount:'2 врага', enemySpeed:'Медленно', enemyBehavior:'Патруль', mobileUI:true
 };
-let state={...defs};
-const ids={world:'world',sky:'sky',trap:'trap',heroType:'heroType',heroColor:'heroColor',collectible:'collectible',enemyType:'enemyType',enemyCount:'enemyCount',enemySpeed:'enemySpeed'};
-const opts={
+let state={...defaults};
+const ids={world:'world',sky:'sky',decor:'decor',trap:'trap',heroType:'heroType',heroColor:'heroColor',heroAccessory:'heroAccessory',collectible:'collectible',heroAnim:'heroAnim',enemyType:'enemyType',enemyCount:'enemyCount',enemySpeed:'enemySpeed',enemyBehavior:'enemyBehavior'};
+const options={
   world:[['Лава','🌋'],['Небо','☁️'],['Лёд','❄️'],['Город','🏙️']],
   sky:[['День','☀️'],['Закат','🌇'],['Ночь','🌙']],
+  decor:[['Башни','🏗️'],['Облака','☁️'],['Кристаллы','💠'],['Блоки','🧱']],
   trap:[['Шипы','⚠️'],['Красные блоки','🟥'],['Лазер','🔴']],
   heroType:[['Робот-новичок','🤖'],['Ниндзя-аватар','🥷'],['Строитель','🦺'],['Исследователь','🧭']],
   heroColor:[['Синий','#469df4'],['Зелёный','#55cd8f'],['Фиолетовый','#b08cff'],['Красный','#ff7368']],
+  heroAccessory:[['Рюкзак','🎒'],['Кепка','🧢'],['Очки','🕶️'],['Без аксессуара','✖️']],
   collectible:[['Кристаллы','💎'],['Монеты','🪙'],['Звёзды','⭐'],['Кубики','🧊']],
+  heroAnim:[['Ходьба + прыжок','🏃'],['Только ходьба','🚶'],['Минимальная','•']],
   enemyType:[['Мини-боты','🤖'],['Слизни','🟢'],['Дроны','🛸'],['Пауки','🕷️']],
   enemyCount:[['Без врагов','0'],['2 врага','2'],['3 врага','3'],['4 врага','4']],
-  enemySpeed:[['Медленно','🐢'],['Нормально','🚶'],['Быстро','⚡']]
+  enemySpeed:[['Медленно','🐢'],['Нормально','🚶'],['Быстро','⚡']],
+  enemyBehavior:[['Патруль','↔️'],['Пауза и патруль','⏸️'],['Плавное движение','〰️']]
 };
 const palettes={
   'Лава':{sky:['#3f214b','#ff9c74','#ff7246'],bg:['#5a2f4f','#6f4360'],plat:['#58e3db','#2d7e8c'],danger:'#ff7a53'},
@@ -147,63 +130,50 @@ const palettes={
   'Город':{sky:['#31415c','#7089b6','#d7e4ff'],bg:['#496589','#6a81a8'],plat:['#ffd05e','#8b6c39'],danger:'#8896bd'}
 };
 const heroColors={'Синий':'#469df4','Зелёный':'#55cd8f','Фиолетовый':'#b08cff','Красный':'#ff7368'};
-const tabButtons=[...document.querySelectorAll('.tab')];
-function setTab(name){tabButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===name)));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='section-'+name));}
-for(const b of tabButtons)b.addEventListener('click',()=>setTab(b.dataset.tab));
 function buildOptions(){
-  Object.keys(ids).forEach(key=>{
+  for(const key of Object.keys(ids)){
     const root=$(ids[key]); root.replaceChildren();
-    for(const [name,icon] of opts[key]){
-      const b=document.createElement('button');
-      b.type='button'; b.className='chip'; b.dataset.key=key; b.dataset.value=name;
-      b.setAttribute('aria-pressed',String(state[key]===name));
-      const mark=document.createElement('span');
-      mark.className=(key==='heroColor'?'dot':'emoji');
-      if(key==='heroColor')mark.style.background=icon; else mark.textContent=icon;
-      const txt=document.createElement('span'); txt.textContent=name;
-      b.append(mark,txt);
-      b.addEventListener('click',()=>{state[key]=name;refresh();});
+    for(const [name,icon] of options[key]){
+      const b=document.createElement('button'); b.type='button'; b.className='chip'; b.dataset.key=key; b.dataset.value=name; b.setAttribute('aria-pressed',String(state[key]===name));
+      const mark=document.createElement('span'); mark.className=(key==='heroColor'?'dot':'emoji'); if(key==='heroColor')mark.style.background=icon; else mark.textContent=icon;
+      const txt=document.createElement('span'); txt.textContent=name; b.append(mark,txt);
+      b.addEventListener('click',()=>{state[key]=name; refresh();});
       root.appendChild(b);
     }
-  });
+  }
 }
+const tabs=[...document.querySelectorAll('.tab')];
+function setTab(name){tabs.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===name)));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='section-'+name));}
+for(const b of tabs)b.addEventListener('click',()=>setTab(b.dataset.tab));
 function prompt(){
   const worldText={Лава:'над лавой',Небо:'в небе среди облаков',Лёд:'над ледяной пропастью',Город:'над улицами блочного города'};
   const trapText={Шипы:'шипы', 'Красные блоки':'красные опасные блоки', Лазер:'лазерные полосы'};
-  const heroText={
-    'Робот-новичок':'блочный робот-новичок',
-    'Ниндзя-аватар':'блочный ниндзя-аватар',
-    'Строитель':'блочный строитель в каске',
-    'Исследователь':'блочный исследователь с рюкзаком'
-  };
-  const enemyText={
-    'Мини-боты':'маленькие квадратные роботы',
-    'Слизни':'простые блочные слизни',
-    'Дроны':'маленькие квадратные дроны',
-    'Пауки':'простые квадратные пауки'
-  };
+  const heroText={'Робот-новичок':'блочный робот-новичок','Ниндзя-аватар':'блочный ниндзя-аватар','Строитель':'блочный строитель в каске','Исследователь':'блочный исследователь с рюкзаком'};
+  const accessoryText={'Рюкзак':'небольшой рюкзак','Кепка':'кепка','Очки':'простые очки','Без аксессуара':'без аксессуаров'};
+  const enemyText={'Мини-боты':'маленькие квадратные роботы','Слизни':'простые блочные слизни','Дроны':'маленькие квадратные дроны','Пауки':'простые квадратные пауки'};
+  const decorText={'Башни':'блочные башни на фоне','Облака':'много блочных облаков','Кристаллы':'крупные кристаллы на фоне','Блоки':'декоративные парящие блоки'};
   const skyText={День:'день',Закат:'закат',Ночь:'ночь'};
-  const movingBg=state.parallax?'Фон сделай более живым: 2–3 слоя параллакса, медленно плывущие облака/дым/снег по теме мира и лёгкое движение задних объектов.':'Фон статичный, но яркий и блочный.';
-  const enemyLine=state.enemyCount==='Без врагов'
-    ?'Врагов не добавляй.'
-    :'Добавь '+state.enemyCount.toLowerCase()+' типа «'+enemyText[state.enemyType]+'». Они патрулируют только по своей платформе влево-вправо, не падают, игрок может легко перепрыгнуть их. Скорость врагов: '+state.enemySpeed.toLowerCase()+'. При столкновении — респавн на чекпоинте.';
+  const movingBg=state.parallax?'Фон сделай живым: 2–3 слоя параллакса, медленно движущиеся облака/частицы по теме мира и небольшое движение задних объектов.':'Фон статичный, но яркий и блочный.';
+  const enemyLine=state.enemyCount==='Без врагов'?'Врагов не добавляй.':'Добавь '+state.enemyCount.toLowerCase()+' типа «'+enemyText[state.enemyType]+'». Поведение: '+state.enemyBehavior.toLowerCase()+'. Скорость врагов: '+state.enemySpeed.toLowerCase()+'. Они двигаются только по своей платформе, не падают, а игрок может их перепрыгнуть. При столкновении — респавн на чекпоинте.';
+  const shadowLine=state.hudShadow?'Используй мягкие тени, объёмные верхние и боковые грани платформ, чтобы 2D-картинка была ближе к визуалу Roblox.':'Сделай чистый плоский 2D-визуал без сложных теней.';
+  const animLine=state.heroAnim==='Минимальная'?'У героя может быть только минимальная анимация движения.':'У героя добавь анимацию: '+state.heroAnim.toLowerCase()+'.';
   return [
-'Ты — разработчик браузерных игр. Напиши простую, полностью РАБОЧУЮ 2D Obby-игру с видом СБОКУ, но визуально ближе к Roblox. Никакого WebGL, изометрии и сложного 3D.',
-'Выведи только готовый HTML-код от <!DOCTYPE html> до </html>. Без пояснений, Markdown и файлов. Весь проект — один HTML-файл со встроенными <style> и <script>. Без библиотек, внешних изображений и звуков. Код должен быть компактным и не длиннее 1000 строк.',
-'Название игры: «'+(state.title.trim()||'LAVA ESCAPE')+'». Мир: трасса '+worldText[state.world]+'. Время суток: '+skyText[state.sky]+'. Стиль: яркий, блочный, дружелюбный, Roblox-inspired, но 2D. '+movingBg,
-'Герой: '+heroText[state.heroType]+' цвета '+state.heroColor.toLowerCase()+'. Он состоит из отдельных прямоугольников: голова, корпус, руки, ноги. Силуэт должен напоминать Roblox-аватара в 2D: квадратная голова, широкое туловище, простые конечности, крупные ботинки. Персонаж смотрит по направлению движения вправо или влево, а не в камеру. Добавь простую анимацию ходьбы и прыжка.',
-'Сделай ОДНУ горизонтальную 2D Obby-карту из 8 широких платформ с маленькими проходимыми разрывами. На 4-й платформе — один чекпоинт, на 8-й — финишная зона. Под платформами опасная поверхность. Используй только один тип ловушек: '+trapText[state.trap]+'. Размести 2 ловушки так, чтобы их было видно заранее и их можно было перепрыгнуть. Никаких невозможных прыжков.',
+'Ты — разработчик браузерных игр. Напиши простую, полностью рабочую 2D Obby-игру с видом СБОКУ, но визуально похожую на Roblox. Никакого WebGL, изометрии и сложного 3D.',
+'Выведи только готовый HTML-код от <!DOCTYPE html> до </html>. Без пояснений, markdown и файлов. Весь проект — один HTML-файл со встроенными <style> и <script>. Без библиотек, внешних изображений и звуков. Код должен быть компактным и не длиннее 1000 строк.',
+'Название игры: «'+(state.title.trim()||'LAVA ESCAPE')+'». Мир: трасса '+worldText[state.world]+'. Время суток: '+skyText[state.sky]+'. Декорации: '+decorText[state.decor]+'. Стиль: яркий, блочный, дружелюбный, Roblox-inspired, но 2D. '+movingBg,
+'Герой: '+heroText[state.heroType]+' цвета '+state.heroColor.toLowerCase()+', аксессуар — '+accessoryText[state.heroAccessory]+'. Он состоит из отдельных прямоугольников: голова, корпус, руки, ноги. Силуэт должен напоминать Roblox-аватара в 2D: квадратная голова, широкое туловище, простые конечности, крупные ботинки. Персонаж смотрит по направлению движения вправо или влево, а не в камеру. '+animLine,
+'Сделай одну горизонтальную 2D Obby-карту из 8 широких платформ с маленькими проходимыми разрывами. На 4-й платформе — один чекпоинт, на 8-й — финишная зона. Под платформами опасная поверхность. Используй только один тип ловушек: '+trapText[state.trap]+'. Размести 2 ловушки так, чтобы их было видно заранее и их можно было перепрыгнуть. Никаких невозможных прыжков.',
 'Коллекционные предметы: '+state.collectCount+' штук, тип — '+state.collectible.toLowerCase()+'. После касания предмет исчезает, счётчик увеличивается на 1. Все собирать для победы необязательно.',
  enemyLine,
 'Управление: стрелки влево/вправо или A/D — движение, Space/W/стрелка вверх — прыжок. Простая физика: x, y, vx, vy, гравитация, прыжок. Платформы — прямоугольники {x,y,w,h}; приземление проверяй только сверху. Камера движется только горизонтально за героем.'+(state.mobileUI?' Добавь простые экранные кнопки для телефона: влево, вправо, прыжок.':''),
 'При падении, касании ловушки или столкновении с врагом герой сразу возрождается на старте или последнем чекпоинте. Попытки без ограничений. Игра должна стартовать сразу, без отдельного стартового меню.',
 'HUD: сверху счётчик предметов, время, номер чекпоинта и падения. На финише покажи экран «🏆 ПОБЕДА!» с кнопкой «Играть снова».',
-'Визуал: яркие платформы с верхней и боковой гранью, крупные блочные облака, насыщенные цвета, мягкие тени, понятный интерфейс. Стилистика должна ощущаться как Roblox Obby, но в 2D сбоку.',
+'Визуал: яркие платформы с верхней и боковой гранью, крупные блочные облака, насыщенные цвета, понятный интерфейс. '+shadowLine+' Стилистика должна ощущаться как Roblox Obby, но в 2D сбоку.',
 'Перед выводом кода проверь, что игра запускается, финиш достижим, а герой может пройти карту.'
 ].join('\n\n');
 }
 function refresh(){
-  for(const key of Object.keys(ids)) $(ids[key]).querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.value===state[key])));
+  for(const key of Object.keys(ids))$(ids[key]).querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.value===state[key])));
   $('collectValue').textContent=state.collectCount;
   $('prompt').value=prompt();
   $('chars').textContent=$('prompt').value.length+' символов';
@@ -211,94 +181,73 @@ function refresh(){
 $('title').addEventListener('input',e=>{state.title=e.target.value;refresh()});
 $('collectCount').addEventListener('input',e=>{state.collectCount=+e.target.value;refresh()});
 $('parallax').addEventListener('change',e=>{state.parallax=e.target.checked;refresh()});
+$('hudShadow').addEventListener('change',e=>{state.hudShadow=e.target.checked;refresh()});
 $('mobileUI').addEventListener('change',e=>{state.mobileUI=e.target.checked;refresh()});
-$('reset').addEventListener('click',()=>{state={...defs};$('title').value=state.title;$('collectCount').value=state.collectCount;$('parallax').checked=state.parallax;$('mobileUI').checked=state.mobileUI;refresh();setTab('world');});
-async function copyPrompt(){
-  const button=$('copyPrompt'),label=button.textContent; let ok=false;
+$('reset').addEventListener('click',()=>{state={...defaults};$('title').value=state.title;$('collectCount').value=state.collectCount;$('parallax').checked=state.parallax;$('hudShadow').checked=state.hudShadow;$('mobileUI').checked=state.mobileUI;refresh();setTab('world');});
+$('copyPrompt').addEventListener('click',async()=>{
+  const btn=$('copyPrompt'),old=btn.textContent;let ok=false;
   try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText($('prompt').value);ok=true;}}catch{}
   if(!ok){const area=document.createElement('textarea');area.value=$('prompt').value;area.style.position='fixed';area.style.left='-9999px';document.body.appendChild(area);area.focus();area.select();try{ok=document.execCommand('copy');}catch{}area.remove();}
-  button.textContent=ok?'✓ Скопировано':'Не удалось скопировать'; setTimeout(()=>button.textContent=label,1800);
-}
-$('copyPrompt').addEventListener('click',copyPrompt);
+  btn.textContent=ok?'СКОПИРОВАНО':'НЕ УДАЛОСЬ'; setTimeout(()=>btn.textContent=old,1600);
+});
 buildOptions(); refresh();
 
 const canvas=$('scenePreview'),g=canvas.getContext('2d');
-let t=0, mx=0, my=0, tx=0, ty=0;
-canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect(); tx=((e.clientX-r.left)/Math.max(1,r.width)-.5)*2; ty=((e.clientY-r.top)/Math.max(1,r.height)-.5)*2;});
-canvas.addEventListener('pointerleave',()=>{tx=0; ty=0;});
-const rect=(x,y,w,h,c)=>{g.fillStyle=c; g.fillRect(x,y,w,h);};
-const poly=(pts,c)=>{g.beginPath(); g.moveTo(pts[0][0],pts[0][1]); for(let i=1;i<pts.length;i++)g.lineTo(pts[i][0],pts[i][1]); g.closePath(); g.fillStyle=c; g.fill();};
-function preview(){
-  t+=0.016; mx+=(tx-mx)*0.06; my+=(ty-my)*0.06;
-  const p=palettes[state.world];
-  const hero=heroColors[state.heroColor];
-  const grad=g.createLinearGradient(0,0,0,540); let top=p.sky[0], mid=p.sky[1], bot=p.sky[2];
-  if(state.sky==='День'){top=shadeColor(p.sky[0],24); mid=shadeColor(p.sky[1],16);} if(state.sky==='Ночь'){top=shadeColor(p.sky[0],-38); mid=shadeColor(p.sky[1],-32); bot=shadeColor(p.sky[2],-18);} 
-  grad.addColorStop(0,top); grad.addColorStop(.7,mid); grad.addColorStop(1,bot); rect(0,0,960,540,grad);
-  if(state.sky==='Ночь'){for(let i=0;i<36;i++)rect((i*73)%960,30+(i*41)%180,2,2,'#ffffff9d');}
-  // sun or moon
-  rect(790,50,0,0,'transparent');
-  g.fillStyle=state.sky==='Ночь'?'#f6fbff':'#ffe8a1'; g.beginPath(); g.arc(820,86,34,0,7); g.fill();
-  // back silhouettes
-  for(let i=0;i<7;i++){
-    const x=i*160-50-mx*10+(state.parallax?Math.sin(t*0.2+i)*8:0), y=250+(i%3)*16;
-    rect(x,y,96,120,p.bg[0]+'90'); rect(x+22,y-28,48,34,p.bg[1]+'70');
-    if(state.world==='Город'){rect(x+9,y-56,22,56,p.bg[0]+'95'); rect(x+49,y-73,18,73,p.bg[1]+'90');}
-  }
-  // clouds / snow / sparks
-  for(let layer=0;layer<2;layer++){
-    for(let i=0;i<7;i++){
-      const base=(i*166-(state.parallax?(t*(layer?10:18)):0)-mx*(layer?18:32));
-      const x=((base%1180)+1180)%1180-160, y=60+layer*64+(i%3)*24-my*(layer?8:15);
-      const alpha=layer?'#ffffff34':'#ffffff66';
-      rect(x,y+13,108,22,alpha); rect(x+18,y,60,30,alpha); rect(x+73,y+8,42,18,alpha);
-    }
-  }
-  if(state.world==='Лёд')for(let i=0;i<24;i++)rect(((i*83+t*35)%1000)-20,(i*43+t*55)%380,3,7,'#ffffffa8');
-  if(state.world==='Лава')for(let i=0;i<18;i++)rect(((i*87+t*28)%980)-10,378+(i%4)*28+Math.sin(t+i)*5,4,4,'#ffd68f92');
-  // danger ground
-  const ug=g.createLinearGradient(0,360,0,540); ug.addColorStop(0,p.danger); ug.addColorStop(1,p.sky[0]); rect(0,390,960,150,ug);
-  for(let i=0;i<18;i++)rect((i*69+(i%3)*17)%960,406+(i%4)*24,36+(i%3)*10,4,state.world==='Лава'?'#ffe4a87d':'#f3ffff7d');
-  // platforms with Roblox-ish chunky top faces
-  const plats=[[34,333,148],[210,319,132],[370,305,148],[550,324,144],[720,310,176]];
-  plats.forEach(([x,y,w])=>{rect(x,y,w,32,p.plat[0]);rect(x,y+28,w,24,p.plat[1]);rect(x+4,y+4,w-8,6,'#ffffff82'); for(let j=12;j<w;j+=24)rect(x+j,y+34,12,5,'#15274244');});
-  // collectibles
-  const items=[[238,283],[402,268],[571,278],[776,270]];
-  items.forEach(([x,y],i)=>{g.save(); g.translate(x,y+Math.sin(t*2.4+i)*5); if(state.collectible==='Монеты'){g.fillStyle='#ffd166'; g.beginPath(); g.ellipse(0,0,12,15,0,0,7); g.fill(); g.strokeStyle='#fff2b0'; g.lineWidth=3; g.beginPath(); g.ellipse(0,0,8,11,0,0,7); g.stroke();} else if(state.collectible==='Звёзды'){g.fillStyle='#ffe17a'; g.font='bold 30px system-ui'; g.textAlign='center'; g.fillText('★',0,11); g.textAlign='left';} else if(state.collectible==='Кубики'){rect(-10,-10,20,20,'#bcefff'); rect(-7,-7,14,14,'#ebffff');} else {poly([[0,-16],[12,-2],[0,16],[-12,-2]],'#82f5fb');} g.restore();});
-  // traps
-  if(state.trap==='Красные блоки'){rect(490,295,34,28,'#fb5d70'); rect(496,299,20,5,'#ffd9dd');}
-  if(state.trap==='Шипы')for(let i=0;i<3;i++)poly([[486+i*16,323],[494+i*16,297],[502+i*16,323]],'#35263f');
-  if(state.trap==='Лазер'){rect(501,286,10,40,'#f24e7f'); rect(504,290,4,32,'#ffe7ef');}
-  // enemies
-  const enemyN=parseInt((state.enemyCount.match(/\d+/)||['0'])[0],10)||0;
-  const patrols=[[270,319,.5],[605,324,1.8],[770,310,2.9],[830,310,4.1]];
-  for(let i=0;i<enemyN;i++) drawEnemy(...patrols[i]);
-  // hero
-  drawHero(108,332+Math.sin(t*2.6)*2,hero);
-  // label only
-  rect(18,18,245,46,'#0f2036c4'); g.fillStyle='#fff'; g.font='900 22px system-ui'; g.fillText((state.title.trim()||'LAVA ESCAPE').slice(0,16).toUpperCase(),30,48);
-  requestAnimationFrame(preview);
-}
+let t=0,mx=0,my=0,tx=0,ty=0;
+canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();tx=((e.clientX-r.left)/Math.max(1,r.width)-.5)*2;ty=((e.clientY-r.top)/Math.max(1,r.height)-.5)*2});
+canvas.addEventListener('pointerleave',()=>{tx=0;ty=0});
+const rect=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h)};
+const poly=(pts,c)=>{g.beginPath();g.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)g.lineTo(pts[i][0],pts[i][1]);g.closePath();g.fillStyle=c;g.fill()};
+function shade(hex,amt){const c=hex.replace('#','');const n=parseInt(c,16);let r=(n>>16)+amt,gr=((n>>8)&255)+amt,b=(n&255)+amt;const f=v=>Math.max(0,Math.min(255,v));return '#'+[f(r),f(gr),f(b)].map(v=>v.toString(16).padStart(2,'0')).join('')}
 function drawHero(x,y,c){
-  rect(x-14,y-25,13,25,'#263250'); rect(x+4,y-25,13,25,'#263250');
-  rect(x-16,y-2,17,8,'#15223d'); rect(x+3,y-2,17,8,'#15223d');
-  rect(x-27,y-74,16,44,c); rect(x+17,y-74,15,44,c);
-  rect(x-20,y-82,48,56,c); rect(x-11,y-67,31,19,'#c6efff');
-  rect(x-14,y-128,39,40,c); rect(x-12,y-124,35,5,'#ffffff7f');
-  rect(x+11,y-111,10,10,'#1d2a42'); rect(x+15,y-108,2,2,'#f1ffff'); rect(x+22,y-101,8,4,'#20324e');
+  rect(x-14,y-25,13,25,'#263250'); rect(x+4,y-25,13,25,'#263250'); rect(x-16,y-2,17,8,'#15223d'); rect(x+3,y-2,17,8,'#15223d');
+  rect(x-27,y-74,16,44,c); rect(x+17,y-74,15,44,c); rect(x-20,y-82,48,56,c); rect(x-11,y-67,31,19,'#c6efff'); rect(x-14,y-128,39,40,c); rect(x-12,y-124,35,5,'#ffffff7f'); rect(x+11,y-111,10,10,'#1d2a42'); rect(x+15,y-108,2,2,'#f1ffff'); rect(x+22,y-101,8,4,'#20324e');
   if(state.heroType==='Ниндзя-аватар') rect(x-15,y-111,34,7,'#15223d');
   if(state.heroType==='Строитель') rect(x-15,y-130,39,9,'#ffd25b');
   if(state.heroType==='Исследователь') rect(x-24,y-78,11,14,'#6a4d38');
+  if(state.heroAccessory==='Рюкзак') rect(x-24,y-78,11,14,'#6a4d38');
+  if(state.heroAccessory==='Кепка') rect(x-14,y-130,39,9,'#ff6f5f');
+  if(state.heroAccessory==='Очки') rect(x+5,y-113,16,5,'#172338');
 }
 function drawEnemy(cx,ground,phase){
-  const xx=cx+Math.sin(t*(state.enemySpeed==='Быстро'?2.4:state.enemySpeed==='Нормально'?1.5:0.9)+phase)*28;
-  const yy=ground-28; const front=state.enemyType==='Слизни'?'#75e26d':state.enemyType==='Дроны'?'#9fd2ff':state.enemyType==='Пауки'?'#6d566c':'#ff87a6';
+  const speed=state.enemySpeed==='Быстро'?2.5:state.enemySpeed==='Нормально'?1.55:0.9;
+  const move=state.enemyBehavior==='Пауза и патруль'?Math.sin(t*speed+phase)*Math.max(0,Math.sin(t*speed+phase))*26:state.enemyBehavior==='Плавное движение'?Math.sin(t*speed+phase)*22:Math.sin(t*speed+phase)*28;
+  const xx=cx+move,yy=ground-28,front=state.enemyType==='Слизни'?'#75e26d':state.enemyType==='Дроны'?'#9fd2ff':state.enemyType==='Пауки'?'#6d566c':'#ff87a6';
   if(state.enemyType==='Дроны'){rect(xx-18,yy,36,14,front); rect(xx-8,yy+14,16,10,'#4d688e'); rect(xx-26,yy+5,8,3,'#d8ecff'); rect(xx+18,yy+5,8,3,'#d8ecff');}
   else if(state.enemyType==='Слизни'){rect(xx-18,yy+6,36,20,front); rect(xx-11,yy+12,6,6,'#213146'); rect(xx+5,yy+12,6,6,'#213146');}
   else if(state.enemyType==='Пауки'){rect(xx-16,yy+8,32,18,front); rect(xx-24,yy+9,8,3,'#35263f'); rect(xx+16,yy+9,8,3,'#35263f'); rect(xx-24,yy+20,8,3,'#35263f'); rect(xx+16,yy+20,8,3,'#35263f'); rect(xx-6,yy+13,5,5,'#fff'); rect(xx+4,yy+13,5,5,'#fff');}
   else {rect(xx-18,yy+6,36,22,front); rect(xx-14,yy,28,8,'#ffd6e3'); rect(xx-16,yy+26,10,8,'#2b3553'); rect(xx+6,yy+26,10,8,'#2b3553'); rect(xx+6,yy+12,7,7,'#213146'); rect(xx+9,yy+15,2,2,'#fff');}
 }
-function shadeColor(hex,amt){const c=hex.replace('#','');const n=parseInt(c,16);let r=(n>>16)+amt,g=((n>>8)&255)+amt,b=(n&255)+amt;const fix=v=>Math.max(0,Math.min(255,v));return '#'+[fix(r),fix(g),fix(b)].map(v=>v.toString(16).padStart(2,'0')).join('');}
+function preview(){
+  t+=0.016; mx+=(tx-mx)*0.06; my+=(ty-my)*0.06;
+  const p=palettes[state.world], hero=heroColors[state.heroColor];
+  let top=p.sky[0],mid=p.sky[1],bot=p.sky[2]; if(state.sky==='День'){top=shade(top,24); mid=shade(mid,16)} if(state.sky==='Ночь'){top=shade(top,-38); mid=shade(mid,-32); bot=shade(bot,-18)}
+  const grad=g.createLinearGradient(0,0,0,540); grad.addColorStop(0,top); grad.addColorStop(.7,mid); grad.addColorStop(1,bot); rect(0,0,960,540,grad);
+  if(state.sky==='Ночь') for(let i=0;i<36;i++) rect((i*73)%960,30+(i*41)%180,2,2,'#ffffff9d');
+  g.fillStyle=state.sky==='Ночь'?'#f6fbff':'#ffe8a1'; g.beginPath(); g.arc(820,86,34,0,7); g.fill();
+  for(let i=0;i<7;i++){const x=i*160-50-mx*10+(state.parallax?Math.sin(t*0.2+i)*8:0), y=250+(i%3)*16; rect(x,y,96,120,p.bg[0]+'90'); rect(x+22,y-28,48,34,p.bg[1]+'70'); if(state.world==='Город'){rect(x+9,y-56,22,56,p.bg[0]+'95'); rect(x+49,y-73,18,73,p.bg[1]+'90')}}
+  for(let layer=0;layer<2;layer++) for(let i=0;i<7;i++){const base=(i*166-(state.parallax?(t*(layer?10:18)):0)-mx*(layer?18:32)); const x=((base%1180)+1180)%1180-160, y=60+layer*64+(i%3)*24-my*(layer?8:15); const alpha=layer?'#ffffff34':'#ffffff66'; rect(x,y+13,108,22,alpha); rect(x+18,y,60,30,alpha); rect(x+73,y+8,42,18,alpha)}
+  if(state.world==='Лёд') for(let i=0;i<24;i++) rect(((i*83+t*35)%1000)-20,(i*43+t*55)%380,3,7,'#ffffffa8');
+  if(state.world==='Лава') for(let i=0;i<18;i++) rect(((i*87+t*28)%980)-10,378+(i%4)*28+Math.sin(t+i)*5,4,4,'#ffd68f92');
+  const ug=g.createLinearGradient(0,390,0,540); ug.addColorStop(0,p.danger); ug.addColorStop(1,p.sky[0]); rect(0,390,960,150,ug);
+  for(let i=0;i<18;i++) rect((i*69+(i%3)*17)%960,406+(i%4)*24,36+(i%3)*10,4,state.world==='Лава'?'#ffe4a87d':'#f3ffff7d');
+  // decor
+  if(state.decor==='Башни'){for(let i=0;i<5;i++){const x=110+i*170; rect(x,230-(i%2)*18,36,90,p.bg[1]+'a0'); rect(x+10,206-(i%2)*18,16,24,p.bg[1]+'a0')}}
+  if(state.decor==='Кристаллы'){for(let i=0;i<6;i++) poly([[80+i*150,340],[98+i*150,300],[116+i*150,340]],'#b1f7ff66')}
+  if(state.decor==='Блоки'){for(let i=0;i<8;i++) rect(40+i*115,200+(i%2)*18,30,30,p.bg[1]+'65')}
+  const plats=[[34,333,148],[210,319,132],[370,305,148],[550,324,144],[720,310,176]];
+  plats.forEach(([x,y,w])=>{rect(x,y,w,32,p.plat[0]); rect(x,y+28,w,24,p.plat[1]); rect(x+4,y+4,w-8,6,'#ffffff82'); if(state.hudShadow) for(let j=12;j<w;j+=24) rect(x+j,y+34,12,5,'#15274244')});
+  const items=[[238,283],[402,268],[571,278],[776,270]];
+  items.forEach(([x,y],i)=>{g.save(); g.translate(x,y+Math.sin(t*2.4+i)*5); if(state.collectible==='Монеты'){g.fillStyle='#ffd166'; g.beginPath(); g.ellipse(0,0,12,15,0,0,7); g.fill(); g.strokeStyle='#fff2b0'; g.lineWidth=3; g.beginPath(); g.ellipse(0,0,8,11,0,0,7); g.stroke();} else if(state.collectible==='Звёзды'){g.fillStyle='#ffe17a'; g.font='bold 30px system-ui'; g.textAlign='center'; g.fillText('★',0,11); g.textAlign='left';} else if(state.collectible==='Кубики'){rect(-10,-10,20,20,'#bcefff'); rect(-7,-7,14,14,'#ebffff');} else {poly([[0,-16],[12,-2],[0,16],[-12,-2]],'#82f5fb');} g.restore();});
+  if(state.trap==='Красные блоки'){rect(490,295,34,28,'#fb5d70'); rect(496,299,20,5,'#ffd9dd')}
+  if(state.trap==='Шипы') for(let i=0;i<3;i++) poly([[486+i*16,323],[494+i*16,297],[502+i*16,323]],'#35263f');
+  if(state.trap==='Лазер'){rect(501,286,10,40,'#f24e7f'); rect(504,290,4,32,'#ffe7ef')}
+  const enemyN=parseInt((state.enemyCount.match(/\d+/)||['0'])[0],10)||0, patrols=[[270,319,.5],[605,324,1.8],[770,310,2.9],[830,310,4.1]];
+  for(let i=0;i<enemyN;i++) drawEnemy(...patrols[i]);
+  drawHero(108,332+Math.sin(t*2.6)*2,hero);
+  rect(18,18,245,46,'#0f2036c4'); g.fillStyle='#fff'; g.font='900 22px system-ui'; g.fillText((state.title.trim()||'LAVA ESCAPE').slice(0,16).toUpperCase(),30,48);
+  requestAnimationFrame(preview);
+}
 requestAnimationFrame(preview);
 })();
 </script>
